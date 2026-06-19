@@ -1,0 +1,332 @@
+ASHESI UNIVER
+SITY COLLEGE
+APPLIED PROGRAMMING 
+PROJECT
+APPLIED PROGRAMMING FOR ENGINEERS
+MAY
+ 
+30 
+202
+6
+RLC CIRCUIT DYNAMICS
+MR. PATRICK DWOMFUOR
+PROJECT MEMBERS: Cal Afun, Darius Dewortor, Jachin 
+Kpogli, Nii
+ Amu, Deo Abban
+Table of Contents
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="007B337D"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b w:val="0"/><w:bCs w:val="0"/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r w:rsidRPr="007B337D"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/></w:rPr><w:instrText xml:space="preserve"> TOC \o "1-3" \h \z \u </w:instrText></w:r><w:r w:rsidRPr="007B337D"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b w:val="0"/><w:bCs w:val="0"/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:hyperlink w:anchor="_Toc231054180" w:history="1"><w:r w:rsidR="001325CA" w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Introduction
+</w:r><w:r w:rsidR="001325CA"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r w:rsidR="001325CA"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054180 \h </w:instrText></w:r><w:r w:rsidR="001325CA"><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r w:rsidR="001325CA"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>3
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054181" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Problem Definition
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054181 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>3
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054182" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Analytical Solution Attempt
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054182 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>5
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054183" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Initial Code Implementation and Basic Plots
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054183 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>6
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054184" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>References
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054184 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>7
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rStyle w:val="Hyperlink"/><w:noProof/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054185" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Appendices
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054185 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>8
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rFonts w:eastAsiaTheme="minorEastAsia"/><w:b w:val="0"/><w:bCs w:val="0"/><w:noProof/><w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054186" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Appendix I – Code Implementation in MATLAB
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054186 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>8
+<w:tab w:val="right" w:leader="dot" w:pos="9016"/></w:tabs><w:rPr><w:rFonts w:eastAsiaTheme="minorEastAsia"/><w:b w:val="0"/><w:bCs w:val="0"/><w:noProof/><w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr></w:pPr><w:hyperlink w:anchor="_Toc231054187" w:history="1"><w:r w:rsidRPr="00C25106"><w:rPr><w:rStyle w:val="Hyperlink"/><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:noProof/></w:rPr><w:t>Appendix II – Basic Plots
+</w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:instrText xml:space="preserve"> PAGEREF _Toc231054187 \h </w:instrText></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr></w:r><w:r><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:fldChar w:fldCharType="separate"/></w:r><w:r w:rsidR="00BE39E2"><w:rPr><w:noProof/><w:webHidden/></w:rPr><w:t>10
+Introduction
+A lot of electronic devices around us, from a simple radio to the most complicated communication system you could think of, share one subtle fundamental characteristic: they do not respond instantaneously to external stimuli
+ 
+(Ayankop-Andi, Umar & Ibeh, 2017)
+. Let’s take a radio
+,
+ for example
+:
+ when a radio is turned on across different frequencies
+,
+ the circuit does not immediately 
+lock onto
+ a single station. Instead
+,
+ it fluctuates briefly before settling on one frequency. Th
+ese
+ small delays
+, which are common in many of our gadgets, are actually intentional and not a result of inefficiency in these devices. 
+But what exactly happens when we take away these delays? 
+ Contrary to what you may think, taking away these delays would result 
+in
+ a high level of instability. For this to be more relatable
+,
+ let us take a camera flash circuit. When the button is pressed
+,
+ the capacitor charges slowly and then discharges rapidly through a circuit. If the energy were released instantly rather than being stored in 
+a 
+capacitor, you would get a destructive current spike
+,
+ which would burn out the flash tube immediately. 
+What we are observing is not inefficiency but a controlled exchange of energy between three fundamental elements: resistance, inductance, and capacitance. The capacitor stores energy in an electric field, the inductor stores energy in a magnetic field, and the resistor regulates how quickly the energy is dissipated. Together they determine how a system responds when it is disturbed: whether it settles smoothly, oscillates before stabilising, or becomes unstable.
+ This is the basis of the RLC circuit
+Problem Definition
+<w:p w14:paraId="289EE6DC" w14:textId="565B350C" w:rsidR="00464A58" w:rsidRPr="00464A58" w:rsidRDefault="00464A58" w:rsidP="00464A58"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr></w:pPr><w:r w:rsidRPr="00464A58"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+a
+: 
+A 
+Standard RLC Circuit
+<w:p w14:paraId="289EE6DC" w14:textId="565B350C" w:rsidR="00464A58" w:rsidRPr="00464A58" w:rsidRDefault="00464A58" w:rsidP="00464A58"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr></w:pPr><w:r w:rsidRPr="00464A58"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+a
+: 
+A 
+Standard RLC Circuit
+To really understand why electrical devices don’t just get to action when they are plugged in or turned on, we need to really understand what RLC (Resistor
+,
+ Inductor
+,
+ C
+apacitor
+) circuits are and the mathematics behind them. When we apply KVL to Kirchhoff’s Voltage Law to a standard series RLC circuit
+ as seen above
+, we uncover a second-order differential equation that forms the basis of any of our analysis in this project. The formula is listed below;
+F(t) =
+ 
+L
+ + 
+R
+ + 
+q(t)
+The variables are defined below;
+F(t)
+ – The external voltage source applied to the
+ circuit as a function of time
+L 
+–
+ 
+The inductance of 
+the inductor
+R- The resistance
+ of the resistor
+C – Capacitance of the capacitor
+Q(t) 
+–
+ 
+Electric charge stored on the capacitor at any time t
+  - 
+Current flowing through the circuit
+ – Rate of change of current
+This RLC formula is based on 
+certain ass
+umptions that make the circuit
+ manageable whilst
+ giving a realistic representation
+ of the circuit 
+behavior
+. 
+We assume that the resistor only 
+provides resistance R, the inductor only provides inductance L
+ and 
+the capacitor
+ 
+only stores charges
+ with capacitance C. 
+We
+ also have to assume that at every 
+instant
+,
+ the voltage around a closed loop is 0
+, 
+which
+ enables us to write 
+our equations. Also
+, we assume that the values of R, L and C do not change with time
+.
+ As our analysis progresses
+, some of the assumptions
+ used in solving 
+and analyzing the circuit
+ will be introduced and discussed
+.
+As Ge
+orge Maria Selvam and Vignesh (2018) point out, we could simplify the circuit by looking at the interaction with just two rival forces, which are the damping coefficient and the natural resonant frequency.
+The damping co
+efficient
+ represent
+s
+ the system’s internal friction, which is determined by the resistor, actively working to slow the current down. The natural resonant frequency represents the circuit’s natural desire to vibrate and swing
+,
+ dictated entirely by how the inductor and capacitor store and pass energy back and forth. 
+These terms are important because, depending on the relationship between the damping coefficient and the natural resonant frequency: the circuit may respond in three distinct ways: underdamped, critically damped, or overdamped. In an underdamped system, the resistance is too small to prevent the current from oscillating immediately, so the current and voltage rise and fall before settling to a steady value. This behaviour is common in radio tuning and communication systems, where these temporary oscillations help the circuit isolate and strengthen a particular signal or frequency. In a critically damped system, the circuit returns to equilibrium in the shortest possible time without oscillating, making it highly desirable in systems that require both speed and stability, such as precision measuring instruments and some control systems. In contrast, an overdamped system contains excessive damping, causing the response to return slowly to equilibrium without oscillating at all. Although slower, this behavior is useful in protective electrical systems and surge suppression circuits where preventing oscillations is more important than response speed. Together, these three responses demonstrate how RLC circuits govern the stability
+ of many practical engineering systems.
+Without RLC dynamics, electrical systems would lose their ability to regulate how energy flows through a circuit over time. Signals and currents would change abruptly rather than gradually, leading to uncontrolled oscillations, overheating, signal distortion, and possible component failure. Devices such as communication systems, power supplies and filters rely heavily on the balance between resistance, capacitance and inductance of a circuit to maintain stability and safe operation. RLC dynamics
+,
+ therefore
+,
+ play a critical role not only in determining how circuits respond to disturbances but also in protecting modern electronic systems from instability and electrical damage.
+Analytical Solution Attempt
+This initial attempt to solve the differential equatio
+n
+ 
+was based on the assumption that the voltage source is a direct current source and used initial conditions of q(0) = 0 
+and q`(0) = 0 (It was assumed that the 
+charge
+ at the moment the circuit was closed is 0). This analytical solution also does not contain a gen
+eral solution for the differential equation when the system is underdamped. It contains solutions for when the system is overdamped or critically damped.
+Solution
+Initial Code Implementation
+ and Basic Plots
+As stated, RLC Series circuits can be analysed 
+with respect to their behaviour 
+under
+ 
+d
+ifferent damping conditions.
+ A MATLAB simulation of such behaviours was 
+performed using
+ the initial code implementation of the 
+base second-order
+ differential equation
+ in Appendix I
+.
+ 
+Conditions analysed included 
+underdamping
+ with 
+an AC 
+voltage 
+source
+, as well as 
+underdamping, 
+critical damping
+ and 
+overdamping
+, all 
+with a DC voltage source
+. 
+ 
+For 
+the 
+first case
+ with an underdamped AC circuit
+ (lines 9-27
+, Appendix I
+), an AC voltage
+ of 
+V = 100 sin (60) volts
+ is applied across the circuit
+, and a low resistance of 2 ohms 
+is used
+. The resulting plot
+ in Figure 1 of 
+Appendix II
+ confirms that
+, due to this 
+low resistance
+ and 
+the 
+continuously 
+changing AC
+, 
+the 
+current
+, or in this case
+, rate of charge oscillate
+s
+ for a very long time 
+until settling
+, of which this time
+ cannot be plotted due to 
+its 
+large value,
+ 
+ 
+The second case
+ with an underdamped DC circuit
+ with V=100V
+ (
+lines 
+30
+-
+ 48
+, Appendix I)
+,
+ shows a similar
+ trend in 
+Figure 2 of Appendix 
+II
+. It can be noted that 
+it does gradually settle.
+ This is due to the fact that
+ the constant 
+voltage 
+ensures that the transient term 
+of the equation 
+goes
+ to zero
+, 
+maintaining the steady state term
+.
+The third case
+ (
+lines 
+50
+-
+71
+, Appendix I) 
+considers a critically damped RLC series circuit with a 20-ohm resistor
+. 
+As seen from Figure 3
+ of
+ Appendix II, 
+the circuit reaches its steady state 
+in the shortest possible time, as compared to the second case and the 
+fourth case
+ (
+lines 74
+-
+95
+, Appendix I)
+, where 
+a resistor 
+of 100 ohms overdamps the circuit such that
+,
+ though there 
+no
+ oscillations, 
+it reaches a steady state gradually, as seen in Figure 4, Appendix II.
+References
+ E. Ayankop-Andi, U. D. M., and G. J. Ibeh, “Effect of Transient and Frequency Response on RC and RLC Circuits to Instantaneous Forcing Function,” 
+Academy Journal of Science and Engineering
+, vol. 11, no. 1, 2017.
+George Maria Selvam, A., & Vignesh, D. (2018). 
+Dynamics in a Series RLC Circuit with Damping
+. International Journal of Mathematics and Its Applications, 6(3), 1–6.
+Appendices
+Appendix I – Code Implementation in MATLAB
+Appendix II – Basic Plots
+<w:p w14:paraId="23F45BBC" w14:textId="437F64A5" w:rsidR="00BE053C" w:rsidRPr="00836FB3" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="00836FB3"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+b
+: Plot of q(t) changing with t for an AC source V = 100sin(60t)
+ 
+V
+ and L = 1H, C = 
+0.0
+1 F and R = 2 ohms (Underdamped)
+<w:p w14:paraId="23F45BBC" w14:textId="437F64A5" w:rsidR="00BE053C" w:rsidRPr="00836FB3" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="00836FB3"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+b
+: Plot of q(t) changing with t for an AC source V = 100sin(60t)
+ 
+V
+ and L = 1H, C = 
+0.0
+1 F and R = 2 ohms (Underdamped)
+Figure 
+c
+: Plot of q(t) changing with t for an DC source V = 100 V and L = 1H, C = 
+0.0
+1 F and R = 2 ohms (Underdamped)
+<w:p w14:paraId="70700F37" w14:textId="3ABAAA0B" w:rsidR="00BE053C" w:rsidRPr="009F38CF" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="009F38CF"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+d
+: Plot of q(t) changing with t for an DC source V = 100 V and L = 1H, C = 0.01 F and R = 20 ohms (Critically damped)
+<w:p w14:paraId="70700F37" w14:textId="3ABAAA0B" w:rsidR="00BE053C" w:rsidRPr="009F38CF" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="009F38CF"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+d
+: Plot of q(t) changing with t for an DC source V = 100 V and L = 1H, C = 0.01 F and R = 20 ohms (Critically damped)
+<w:p w14:paraId="16049B9B" w14:textId="1EDF586F" w:rsidR="00BE053C" w:rsidRPr="00836FB3" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="00836FB3"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+e
+: Plot of q(t) changing with t for an DC source V = 100 V and L = 1H, C = 0.01 F and R = 100 ohms (Overdamped)
+<w:p w14:paraId="16049B9B" w14:textId="1EDF586F" w:rsidR="00BE053C" w:rsidRPr="00836FB3" w:rsidRDefault="00BE053C" w:rsidP="00BE053C"><w:pPr><w:pStyle w:val="Caption"/><w:jc w:val="center"/><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:noProof/></w:rPr></w:pPr><w:r w:rsidRPr="00836FB3"><w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman" w:cs="Times New Roman"/><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/></w:rPr><w:t xml:space="preserve">Figure 
+e
+: Plot of q(t) changing with t for an DC source V = 100 V and L = 1H, C = 0.01 F and R = 100 ohms (Overdamped)

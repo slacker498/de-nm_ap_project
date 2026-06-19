@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+    --bg-darker: #060913;
+    --bg-dark: #0b1120;
+    --bg-card: rgba(17, 24, 39, 0.7);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --accent-cyan: #06b6d4;
+    --accent-purple: #a855f7;
+    --accent-yellow: #f59e0b;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-darker);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+}
+
+.glass-panel-hover:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(17, 24, 39, 0.85);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Glow Effects */
+.glow-cyan {
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+}
+.glow-purple {
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+}
+.glow-green {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Code block customization */
+pre, code {
+    font-family: 'Fira Code', monospace;
+}
+
+/* Scrollmation Layout styling */
+.scrollmation-container {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.scrollmation-content {
+    width: 50%;
+    position: relative;
+    z-index: 10;
+}
+
+.scrollmation-visual {
+    width: 50%;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    z-index: 20;
+    overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+    .scrollmation-container {
+        flex-direction: column;
+    }
+    .scrollmation-content {
+        width: 100%;
+        order: 2;
+    }
+    .scrollmation-visual {
+        width: 100%;
+        height: 50vh;
+        position: sticky;
+        top: 80px;
+        order: 1;
+        background: radial-gradient(circle at center, #0c152b 0%, #060913 100%);
+    }
+}
+
+/* Custom Nav Transition */
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-cyan);
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Damping indicator badges */
+.damping-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+}
+.damping-under {
+    background-color: rgba(6, 182, 212, 0.1);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+}
+.damping-critical {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.damping-over {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Grid backgrounds */
+.bg-grid {
+    background-size: 40px 40px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+.bg-dots {
+    background-size: 20px 20px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}

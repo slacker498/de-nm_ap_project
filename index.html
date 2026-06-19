@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLC Circuit Dynamics - Ashesi Applied Programming Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#060913',
+                        darkcard: 'rgba(17, 24, 39, 0.7)',
+                        accentcyan: '#06b6d4',
+                        accentpurple: '#a855f7',
+                        accentgreen: '#10b981',
+                        accentred: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax for rendering LaTeX equations -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-darkbg text-slate-100 overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="glass-panel sticky top-0 z-50 border-b border-white/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">Ω</div>
+                        <div>
+                            <span class="font-bold text-white text-lg tracking-wide block">RLC Dynamics</span>
+                            <span class="block text-xs text-slate-400">Applied Project</span>
+                        </div>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-sm font-medium text-white transition duration-200 active">Home</a>
+                    <a href="model.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Model & Derivation</a>
+                    <a href="code.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB Code</a>
+                    <a href="results.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Results & Analysis</a>
+                    <a href="team.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our Team</a>
+                </nav>
+                <div class="md:hidden">
+                    <span class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Home</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Scrollmation Split Container -->
+    <div class="scrollmation-container">
+
+        <!-- Left Column: Scrollable Narrative Content -->
+        <div class="scrollmation-content px-6 sm:px-12 py-12 lg:py-24 space-y-32">
+            
+            <!-- Chapter 1: Hero & Introduction -->
+            <section id="chapter-1" class="min-h-[70vh] flex flex-col justify-center">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-accentcyan text-xs font-semibold mb-6 tracking-wider uppercase w-max">
+                    Applied Programming & Math Modeling Project
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                    RLC Series <br><span class="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Circuit Dynamics</span>
+                </h1>
+                
+                <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+                    A lot of electronic devices around us, from a simple radio to the most complicated communication system you could think of, share one subtle fundamental characteristic: <strong>they do not respond instantaneously to external stimuli</strong>.
+                </p>
+                
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    Let’s take a radio, for example: when a radio is turned on across different frequencies, the circuit does not immediately lock onto a single station. Instead, it fluctuates briefly before settling on one frequency. These small delays are actually intentional.
+                </p>
+
+                <p class="text-slate-400 leading-relaxed">
+                    Scroll down to look inside a vintage radio tuning receiver and witness how the resistor, inductor, and capacitor exchange energy.
+                </p>
+
+                <div class="mt-12 flex items-center space-x-2 text-slate-500 animate-float">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    <span class="text-xs uppercase tracking-widest font-semibold">Scroll to explore</span>
+                </div>
+            </section>
+
+            <!-- Chapter 2: The RLC Circuit Board -->
+            <section id="chapter-2" class="min-h-[70vh] flex flex-col justify-center border-l-2 border-white/5 pl-6 sm:pl-8">
+                <h2 class="text-3xl font-bold text-white mb-6">
+                    Exploring the Circuit Board
+                </h2>
+                
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    What we are observing is a controlled exchange of energy between three fundamental elements: resistance (\(R\)), inductance (\(L\)), and capacitance (\(C\)).
+                </p>
+
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-accentcyan flex items-center justify-center font-bold text-xs mt-1">C</div>
+                        <p class="text-sm text-slate-400"><strong class="text-white">Capacitor</strong>: Stores electrical energy in an electric field between parallel plates.</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-purple-500/10 border border-purple-500/30 text-accentpurple flex items-center justify-center font-bold text-xs mt-1">L</div>
+                        <p class="text-sm text-slate-400"><strong class="text-white">Inductor</strong>: Stores energy in a magnetic field generated by coiled copper wire.</p>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-amber-400 flex items-center justify-center font-bold text-xs mt-1">R</div>
+                        <p class="text-sm text-slate-400"><strong class="text-white">Resistor</strong>: Regulates how quickly this energy is dissipated as heat, acting as system friction.</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-400 leading-relaxed">
+                    Without RLC dynamics, devices such as camera flashes would experience destructive current spikes, immediately burning out components. Together, these elements determine how a system responds to external electrical disturbances.
+                </p>
+            </section>
+
+            <!-- Chapter 3: Underdamped Response -->
+            <section id="chapter-3" class="min-h-[70vh] flex flex-col justify-center border-l-2 border-cyan-500/20 pl-6 sm:pl-8">
+                <span class="damping-badge damping-under mb-4 w-max">Underdamped State</span>
+                <h2 class="text-3xl font-bold text-white mb-6">
+                    Underdamped Oscillations
+                </h2>
+                
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    In an underdamped system, the resistance is too small (\(R = 2\ \Omega\)) to prevent the current from oscillating immediately. As a result, the current and voltage swing back and forth, rising and falling repeatedly before settling.
+                </p>
+
+                <p class="text-slate-400 leading-relaxed">
+                    This behavior is common in radio tuning, where temporary oscillations help the circuit isolate and strengthen a specific frequency. On the right, watch the electrons bounce back and forth rapidly, creating a ringing waveform on the oscilloscope screen.
+                </p>
+            </section>
+
+            <!-- Chapter 4: Critically Damped Response -->
+            <section id="chapter-4" class="min-h-[70vh] flex flex-col justify-center border-l-2 border-emerald-500/20 pl-6 sm:pl-8">
+                <span class="damping-badge damping-critical mb-4 w-max font-bold text-emerald-400">Critically Damped State</span>
+                <h2 class="text-3xl font-bold text-white mb-6">
+                    Critically Damped Stability
+                </h2>
+                
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    In a critically damped system, we increase the resistance to its optimal value (\(R = 20\ \Omega\)). Here, the circuit returns to equilibrium in the shortest possible time without any oscillations or overshoot.
+                </p>
+
+                <p class="text-slate-400 leading-relaxed">
+                    This response is highly desirable in systems requiring speed and stability, such as analog measurement pointers, CD players, or control systems. In the visualizer, watch the electrons slow down smoothly and settle to a halt in minimal time.
+                </p>
+            </section>
+
+            <!-- Chapter 5: Overdamped Response -->
+            <section id="chapter-5" class="min-h-[70vh] flex flex-col justify-center border-l-2 border-red-500/20 pl-6 sm:pl-8">
+                <span class="damping-badge damping-over mb-4 w-max font-bold text-red-400">Overdamped State</span>
+                <h2 class="text-3xl font-bold text-white mb-6">
+                    Overdamped Sluggishness
+                </h2>
+                
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    In an overdamped system, the resistance is set very high (\(R = 100\ \Omega\)). The resistor dominates the circuit, introducing massive electrical friction. There are no oscillations, but the charge takes a very long time to rise to its final value.
+                </p>
+
+                <p class="text-slate-400 leading-relaxed">
+                    This slow, safe response is valuable in surge suppression and high-voltage circuit breakers where avoiding oscillations is more important than response speed. Watch how the electrons on the right crawl sluggishly towards the capacitor plates.
+                </p>
+            </section>
+
+        </div>
+
+        <!-- Right Column: Sticky Three.js WebGL Visualization -->
+        <div class="scrollmation-visual">
+            <div id="canvas-container" class="w-full h-full relative">
+                <!-- Floating Info Overlay -->
+                <div class="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xl pointer-events-none z-30 transition-all duration-300" id="info-overlay">
+                    <h4 class="text-xs font-semibold text-accentcyan uppercase tracking-wider mb-1" id="overlay-state-title">Loading Circuit Visualizer...</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed" id="overlay-state-desc">Initialising Three.js WebGL scene and asset models.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 bg-slate-950/60 backdrop-blur-sm z-30 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
+            <p>© 2026 Applied Programming Project - Ashesi University College</p>
+            <p class="mt-2 text-xs">Developed by Cal Afun, Darius Dewortor, Jachin Kpogli, Nii Amu, Deo Abban</p>
+        </div>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Main Application script -->
+    <script src="app.js"></script>
+</body>
+</html>

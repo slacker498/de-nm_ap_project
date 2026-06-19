@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Code & Simulation - RLC Circuit Dynamics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#060913',
+                        darkcard: 'rgba(17, 24, 39, 0.7)',
+                        accentcyan: '#06b6d4',
+                        accentpurple: '#a855f7',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax for rendering LaTeX equations -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-darkbg bg-dots">
+
+    <!-- Header Navigation -->
+    <header class="glass-panel sticky top-0 z-50 border-b border-white/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">Ω</div>
+                        <div>
+                            <span class="font-bold text-white text-lg tracking-wide block">RLC Dynamics</span>
+                            <span class="block text-xs text-slate-400">Applied Project</span>
+                        </div>
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
+                    <a href="model.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Model & Derivation</a>
+                    <a href="code.html" class="nav-link text-sm font-medium text-white transition duration-200 active">MATLAB Code</a>
+                    <a href="results.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Results & Analysis</a>
+                    <a href="team.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our Team</a>
+                </nav>
+                <div class="md:hidden">
+                    <span class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">MATLAB</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Page Title Section -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-accentpurple text-xs font-semibold mb-4 tracking-wider uppercase">
+                Applied Programming Course Focus
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+                MATLAB Simulation & Code
+            </h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                Understanding the numerical modeling of RLC circuits in MATLAB using standard second-order ODE solvers.
+            </p>
+        </div>
+
+        <!-- Section 1: Code Explanation -->
+        <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
+                1. System Reduction & Solver Logic
+            </h2>
+            
+            <p class="text-slate-300 mb-6 leading-relaxed">
+                MATLAB solvers (like `ode45`) require second-order differential equations to be reduced to a system of first-order ordinary differential equations. To accomplish this, we define state variables representing the charge \(q(t)\) and the current \(i(t)\).
+            </p>
+
+            <div class="my-6 bg-slate-900/60 border border-white/5 rounded-xl p-6 leading-relaxed text-slate-300">
+                <p class="mb-4">Let the state vector be:</p>
+                <div class="text-center text-lg font-mono text-white mb-4">
+                    $$\mathbf{y} = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} q(t) \\ \frac{dq}{dt} \end{bmatrix}$$
+                </div>
+                <p class="mb-4">Differentiating \(\mathbf{y}\) yields the first-order system:</p>
+                <div class="text-center text-lg font-mono text-white">
+                    $$\frac{d\mathbf{y}}{dt} = \begin{bmatrix} \frac{dy_1}{dt} \\ \frac{dy_2}{dt} \end{bmatrix} = \begin{bmatrix} y_2 \\ \frac{F(t) - R y_2 - \frac{1}{C} y_1}{L} \end{bmatrix}$$
+                </div>
+            </div>
+
+            <p class="text-slate-300 leading-relaxed">
+                This system of first-order differential equations can be implemented directly inside a MATLAB function. The solver `ode45` (which uses a variable-step Runge-Kutta-Fehlberg 4th/5th-order formula) then integrates this system over a time span to approximate the solution.
+            </p>
+        </section>
+
+        <!-- Section 2: MATLAB Code Implementation -->
+        <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <div class="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">
+                    2. Complete Simulation Script
+                </h2>
+                <button onclick="copyCode()" class="text-xs bg-cyan-500/10 hover:bg-cyan-500/20 text-accentcyan border border-cyan-500/20 px-3 py-1.5 rounded transition duration-200 flex items-center">
+                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m-0 10a1 1 0 001-1v-4a1 1 0 00-1-1h-4a1 1 0 00-1 1v4a1 1 0 001 1h4z"></path></svg>
+                    Copy Code
+                </button>
+            </div>
+            
+            <p class="text-slate-300 mb-6 leading-relaxed">
+                Here is the clean, complete MATLAB script which simulates all the damping cases described in the report. This code uses parameters \(L = 1\text{ H}\), \(C = 0.01\text{ F}\), and solves for underdamped, critically damped, and overdamped conditions.
+            </p>
+
+            <div class="bg-slate-950/80 rounded-xl border border-white/10 p-5 overflow-x-auto shadow-inner text-sm font-mono text-slate-300">
+<pre id="matlab-code" class="text-slate-200">
+<span class="text-slate-500">% ==========================================================</span>
+<span class="text-slate-500">% ASHESI UNIVERSITY - APPLIED PROGRAMMING FOR ENGINEERS</span>
+<span class="text-slate-500">% RLC SERIES CIRCUIT SIMULATION AND SOLVER COMPARISON</span>
+<span class="text-slate-500">% ==========================================================</span>
+
+clc; clear; close all;
+
+<span class="text-slate-500">% --- Circuit Parameters ---</span>
+L = 1;          <span class="text-slate-500">% Inductance (H)</span>
+C = 0.01;       <span class="text-slate-500">% Capacitance (F)</span>
+tspan = [0 10]; <span class="text-slate-500">% Time range for integration (seconds)</span>
+y0 = [0; 0];    <span class="text-slate-500">% Initial conditions: q(0) = 0, q'(0) = 0</span>
+
+<span class="text-slate-500">% ==========================================================</span>
+<span class="text-slate-500">% CASE 1: Underdamped Circuit with AC Voltage Source</span>
+<span class="text-slate-500">% R = 2 ohms (Underdamped since R < 20 ohms)</span>
+<span class="text-slate-500">% Voltage Source: V(t) = 100 * sin(60 * t) V</span>
+<span class="text-slate-500">% ==========================================================</span>
+R_case1 = 2;
+ode_ac = @(t, y) [y(2); (100*sin(60*t) - R_case1*y(2) - (1/C)*y(1))/L];
+[t_ac, y_ac] = ode45(ode_ac, tspan, y0);
+
+<span class="text-slate-500">% ==========================================================</span>
+<span class="text-slate-500">% CASE 2: Underdamped Circuit with DC Voltage Source</span>
+<span class="text-slate-500">% R = 2 ohms, Voltage Source: V = 100 V</span>
+<span class="text-slate-500">% ==========================================================</span>
+R_case2 = 2;
+ode_dc_under = @(t, y) [y(2); (100 - R_case2*y(2) - (1/C)*y(1))/L];
+[t_dc_under, y_dc_under] = ode45(ode_dc_under, tspan, y0);
+
+<span class="text-slate-500">% ==========================================================</span>
+<span class="text-slate-500">% CASE 3: Critically Damped Circuit with DC Voltage Source</span>
+<span class="text-slate-500">% R = 20 ohms, Voltage Source: V = 100 V</span>
+<span class="text-slate-500">% ==========================================================</span>
+R_case3 = 20;
+ode_dc_critical = @(t, y) [y(2); (100 - R_case3*y(2) - (1/C)*y(1))/L];
+[t_dc_critical, y_dc_critical] = ode45(ode_dc_critical, tspan, y0);
+
+<span class="text-slate-500">% ==========================================================</span>
+<span class="text-slate-500">% CASE 4: Overdamped Circuit with DC Voltage Source</span>
+<span class="text-slate-500">% R = 100 ohms, Voltage Source: V = 100 V</span>
+<span class="text-slate-500">% ==========================================================</span>
+R_case4 = 100;
+ode_dc_over = @(t, y) [y(2); (100 - R_case4*y(2) - (1/C)*y(1))/L];
+[t_dc_over, y_dc_over] = ode45(ode_dc_over, tspan, y0);
+
+<span class="text-slate-500">% --- Plotting Results (similar to Appendix II) ---</span>
+figure;
+subplot(2,2,1);
+plot(t_ac, y_ac(:,1), 'b-', 'LineWidth', 1.5);
+grid on; title('Case 1: Underdamped AC (R = 2 \Omega, V = 100sin(60t))');
+xlabel('Time t (s)'); ylabel('Charge q(t)');
+
+subplot(2,2,2);
+plot(t_dc_under, y_dc_under(:,1), 'c-', 'LineWidth', 1.5);
+grid on; title('Case 2: Underdamped DC (R = 2 \Omega, V = 100V)');
+xlabel('Time t (s)'); ylabel('Charge q(t)');
+
+subplot(2,2,3);
+plot(t_dc_critical, y_dc_critical(:,1), 'g-', 'LineWidth', 1.5);
+grid on; title('Case 3: Critically Damped DC (R = 20 \Omega, V = 100V)');
+xlabel('Time t (s)'); ylabel('Charge q(t)');
+
+subplot(2,2,4);
+plot(t_dc_over, y_dc_over(:,1), 'r-', 'LineWidth', 1.5);
+grid on; title('Case 4: Overdamped DC (R = 100 \Omega, V = 100V)');
+xlabel('Time t (s)'); ylabel('Charge q(t)');
+</pre>
+            </div>
+        </section>
+
+        <!-- Section 3: Original Code Screenshots -->
+        <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
+                3. Original Code Screenshots (Appendix I)
+            </h2>
+            
+            <p class="text-slate-300 mb-8 leading-relaxed">
+                The original MATLAB code sheets from the project submission are embedded below for completeness:
+            </p>
+
+            <div class="space-y-12">
+                <div class="bg-slate-950/40 border border-white/10 rounded-xl p-6 flex flex-col items-center">
+                    <img src="resources/media/image6.png" alt="MATLAB Code Screenshot Part 1" class="rounded-lg shadow-lg border border-white/5 max-w-full h-auto mb-4">
+                    <span class="text-xs text-slate-400 italic">Figure e: MATLAB script lines 1-27 detailing variable initialization and Case 1 simulation functions.</span>
+                </div>
+
+                <div class="bg-slate-950/40 border border-white/10 rounded-xl p-6 flex flex-col items-center">
+                    <img src="resources/media/image7.png" alt="MATLAB Code Screenshot Part 2" class="rounded-lg shadow-lg border border-white/5 max-w-full h-auto mb-4">
+                    <span class="text-xs text-slate-400 italic">Figure f: MATLAB script lines 28-48 depicting Case 2 setup and integration options.</span>
+                </div>
+
+                <div class="bg-slate-950/40 border border-white/10 rounded-xl p-6 flex flex-col items-center">
+                    <img src="resources/media/image8.png" alt="MATLAB Code Screenshot Part 3" class="rounded-lg shadow-lg border border-white/5 max-w-full h-auto mb-4">
+                    <span class="text-xs text-slate-400 italic">Figure g: MATLAB script lines 49-71 representing Case 3 critical damping solver integration.</span>
+                </div>
+
+                <div class="bg-slate-950/40 border border-white/10 rounded-xl p-6 flex flex-col items-center">
+                    <img src="resources/media/image9.png" alt="MATLAB Code Screenshot Part 4" class="rounded-lg shadow-lg border border-white/5 max-w-full h-auto mb-4">
+                    <span class="text-xs text-slate-400 italic">Figure h: MATLAB script lines 72-95 showing Case 4 overdamped simulation and final plot configurations.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation buttons -->
+        <div class="flex justify-between items-center mt-12 border-t border-white/10 pt-8">
+            <a href="model.html" class="flex items-center text-slate-400 hover:text-white transition duration-200 text-sm">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Model & Derivation
+            </a>
+            <a href="results.html" class="flex items-center text-accentcyan hover:text-cyan-400 transition duration-200 text-sm font-semibold">
+                Proceed to Results & Analysis
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l7-7m-7 7H3"></path></svg>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 mt-20 bg-slate-950/40 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
+            <p>© 2026 Applied Programming Project - Ashesi University College</p>
+            <p class="mt-2 text-xs">Developed by Cal Afun, Darius Dewortor, Jachin Kpogli, Nii Amu, Deo Abban</p>
+        </div>
+    </footer>
+
+    <!-- Copy code logic -->
+    <script>
+        function copyCode() {
+            const codeText = document.getElementById('matlab-code').innerText;
+            navigator.clipboard.writeText(codeText).then(() => {
+                alert('MATLAB code copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
