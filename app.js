@@ -13,10 +13,10 @@ let gaugeNeedle;
 
 // Animation / Scroll Targets
 let currentScrollFraction = 0;
-let targetCameraPos = new THREE.Vector3(0, 0, 10);
-let targetCameraLookAt = new THREE.Vector3(0, 0, 0);
-let cameraPos = new THREE.Vector3(0, 0, 10);
-let cameraLookAt = new THREE.Vector3(0, 0, 0);
+let targetCameraPos = null;
+let targetCameraLookAt = null;
+let cameraPos = null;
+let cameraLookAt = null;
 
 // Physics state based on damping case
 let dampingMode = 'intro'; // 'intro', 'pcb', 'under', 'critical', 'over'
@@ -45,53 +45,95 @@ function init() {
     const container = document.getElementById('canvas-container');
     if (!container) return;
 
-    // 1. Scene setup
-    scene = new THREE.Scene();
-    scene.background = null; // transparent background, let CSS handle it
+    const titleOverlay = document.getElementById('overlay-state-title');
+    const descOverlay = document.getElementById('overlay-state-desc');
 
-    // 2. Camera setup
-    camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.copy(cameraPos);
+    try {
+        // Safe check for THREE library presence
+        if (typeof THREE === 'undefined') {
+            throw new Error("Three.js library failed to load");
+        }
 
-    // 3. Renderer setup
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    container.appendChild(renderer.domElement);
+        // Initialize vectors inside the try block to avoid global ReferenceError if THREE is loading/missing
+        targetCameraPos = new THREE.Vector3(0, 0, 10);
+        targetCameraLookAt = new THREE.Vector3(0, 0, 0);
+        cameraPos = new THREE.Vector3(0, 0, 10);
+        cameraLookAt = new THREE.Vector3(0, 0, 0);
 
-    clock = new THREE.Clock();
+        // 1. Scene setup
+        scene = new THREE.Scene();
+        scene.background = null; // transparent background, let CSS handle it
 
-    // 4. Lights
-    const ambientLight = new THREE.AmbientLight(0x0e172a, 1.5);
-    scene.add(ambientLight);
+        // Determine initial dimensions (with fallback if container has 0 height/width before layout)
+        let width = container.clientWidth || (window.innerWidth > 1024 ? window.innerWidth / 2 : window.innerWidth);
+        let height = container.clientHeight || (window.innerHeight - 80);
 
-    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    dirLight.position.set(5, 8, 5);
-    scene.add(dirLight);
+        // 2. Camera setup
+        camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+        camera.position.copy(cameraPos);
 
-    const blueLight = new THREE.PointLight(0x06b6d4, 1.0, 15);
-    blueLight.position.set(-2, 3, 2);
-    scene.add(blueLight);
+        // 3. Renderer setup
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        
+        // Clear any previous canvas elements to avoid duplication
+        container.querySelectorAll('canvas').forEach(el => el.remove());
+        container.appendChild(renderer.domElement);
 
-    pointLightGlow = new THREE.PointLight(0xffffff, 0.0, 10);
-    pointLightGlow.position.set(0, 0, 0);
-    scene.add(pointLightGlow);
+        clock = new THREE.Clock();
 
-    // 5. Create 3D Models
-    createCRTTexture();
-    createModels();
-    createElectrons();
+        // 4. Lights
+        const ambientLight = new THREE.AmbientLight(0x0e172a, 1.5);
+        scene.add(ambientLight);
 
-    // 6. Event Listeners
-    window.addEventListener('resize', onWindowResize);
-    window.addEventListener('scroll', handleScroll);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        dirLight.position.set(5, 8, 5);
+        scene.add(dirLight);
 
-    // Initial trigger
-    handleScroll();
+        const blueLight = new THREE.PointLight(0x06b6d4, 1.0, 15);
+        blueLight.position.set(-2, 3, 2);
+        scene.add(blueLight);
 
-    // 7. Start Animation Loop
-    animate();
+        pointLightGlow = new THREE.PointLight(0xffffff, 0.0, 10);
+        pointLightGlow.position.set(0, 0, 0);
+        scene.add(pointLightGlow);
+
+        // 5. Create 3D Models
+        createCRTTexture();
+        createModels();
+        createElectrons();
+
+        // 6. Event Listeners & Resize Observer
+        window.addEventListener('resize', onWindowResize);
+        window.addEventListener('scroll', handleScroll);
+
+        // ResizeObserver to handle layout shifts dynamically
+        if (window.ResizeObserver) {
+            const resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    const w = entry.contentRect.width || container.clientWidth;
+                    const h = entry.contentRect.height || container.clientHeight;
+                    if (w > 0 && h > 0) {
+                        camera.aspect = w / h;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(w, h);
+                    }
+                }
+            });
+            resizeObserver.observe(container);
+        }
+
+        // Initial trigger
+        handleScroll();
+
+        // 7. Start Animation Loop
+        animate();
+    } catch (error) {
+        console.warn("Three.js/WebGL Initialization failed. Activating 2D Dashboard Fallback...", error);
+        init2DFallback(container);
+    }
 }
 
 // --- Create Offscreen Canvas for Oscilloscope (CRT) Screen ---
@@ -735,7 +777,382 @@ function animate() {
     renderer.render(scene, camera);
 }
 
+// ==========================================================
+// RLC Circuit Dynamics - 2D Canvas Dashboard Fallback
+// ==========================================================
+let canvas2D = null;
+let ctx2D = null;
+let needleAngle = Math.PI / 3;
+let wavePhase2D = 0;
+let electrons2D = [];
+
+function init2DFallback(container) {
+    // 1. Create the fallback 2D canvas
+    canvas2D = document.createElement('canvas');
+    canvas2D.style.width = '100%';
+    canvas2D.style.height = '100%';
+    container.querySelectorAll('canvas').forEach(el => el.remove());
+    container.appendChild(canvas2D);
+    
+    ctx2D = canvas2D.getContext('2d');
+    
+    // 2. Sizing functions
+    function resizeCanvas() {
+        canvas2D.width = container.clientWidth || window.innerWidth / 2;
+        canvas2D.height = container.clientHeight || (window.innerHeight - 80);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('scroll', handleScroll);
+    
+    // 3. Setup electrons
+    const electronCount = 15;
+    electrons2D = [];
+    for (let i = 0; i < electronCount; i++) {
+        electrons2D.push(i / electronCount);
+    }
+    
+    const startTime = Date.now();
+    let lastTime = startTime;
+    
+    // 4. Fallback rendering loop
+    function animate2D() {
+        requestAnimationFrame(animate2D);
+        
+        const now = Date.now();
+        const time = (now - startTime) / 1000;
+        const deltaTime = (now - lastTime) / 1000;
+        lastTime = now;
+        
+        const w = canvas2D.width;
+        const h = canvas2D.height;
+        
+        // Background
+        ctx2D.fillStyle = '#060913';
+        ctx2D.fillRect(0, 0, w, h);
+        
+        // Draw board border grid
+        ctx2D.strokeStyle = 'rgba(255, 255, 255, 0.02)';
+        ctx2D.lineWidth = 1;
+        const gridSize = 20;
+        for (let x = 0; x < w; x += gridSize) {
+            ctx2D.beginPath(); ctx2D.moveTo(x, 0); ctx2D.lineTo(x, h); ctx2D.stroke();
+        }
+        for (let y = 0; y < h; y += gridSize) {
+            ctx2D.beginPath(); ctx2D.moveTo(0, y); ctx2D.lineTo(w, y); ctx2D.stroke();
+        }
+        
+        // Draw dashboard frame border
+        ctx2D.strokeStyle = 'rgba(6, 182, 212, 0.15)';
+        ctx2D.lineWidth = 2;
+        ctx2D.strokeRect(10, 10, w - 20, h - 20);
+        
+        // --- 1. Draw Oscilloscope (CRT Screen) ---
+        const oscW = Math.min(w * 0.48, 280);
+        const oscH = Math.min(h * 0.35, 200);
+        const oscX = 30;
+        const oscY = 30;
+        
+        ctx2D.fillStyle = '#1e293b';
+        ctx2D.fillRect(oscX - 6, oscY - 6, oscW + 12, oscH + 12);
+        ctx2D.strokeStyle = '#475569';
+        ctx2D.lineWidth = 2;
+        ctx2D.strokeRect(oscX - 6, oscY - 6, oscW + 12, oscH + 12);
+        
+        ctx2D.fillStyle = '#020617';
+        ctx2D.fillRect(oscX, oscY, oscW, oscH);
+        
+        ctx2D.strokeStyle = '#0f172a';
+        ctx2D.lineWidth = 1;
+        for (let xG = oscX; xG < oscX + oscW; xG += 25) {
+            ctx2D.beginPath(); ctx2D.moveTo(xG, oscY); ctx2D.lineTo(xG, oscY + oscH); ctx2D.stroke();
+        }
+        for (let yG = oscY; yG < oscY + oscH; yG += 25) {
+            ctx2D.beginPath(); ctx2D.moveTo(oscX, yG); ctx2D.lineTo(oscX + oscW, yG); ctx2D.stroke();
+        }
+        
+        ctx2D.strokeStyle = '#1e293b';
+        ctx2D.beginPath();
+        ctx2D.moveTo(oscX + oscW / 2, oscY); ctx2D.lineTo(oscX + oscW / 2, oscY + oscH);
+        ctx2D.moveTo(oscX, oscY + oscH / 2); ctx2D.lineTo(oscX + oscW, oscY + oscH / 2);
+        ctx2D.stroke();
+        
+        wavePhase2D += deltaTime * 5;
+        ctx2D.strokeStyle = '#22c55e';
+        if (dampingMode === 'under') ctx2D.strokeStyle = '#06b6d4';
+        if (dampingMode === 'critical') ctx2D.strokeStyle = '#10b981';
+        if (dampingMode === 'over') ctx2D.strokeStyle = '#ef4444';
+        
+        ctx2D.lineWidth = 2;
+        ctx2D.beginPath();
+        
+        for (let sx = 0; sx < oscW; sx++) {
+            let t = (sx / oscW) * 10;
+            let y = 0;
+            
+            switch (dampingMode) {
+                case 'intro':
+                    y = Math.sin(t * 12 + wavePhase2D) * 4 + Math.sin(t * 40 + wavePhase2D * 3) * 2;
+                    break;
+                case 'pcb':
+                    y = Math.sin(t * 2 + wavePhase2D) * 12;
+                    break;
+                case 'under':
+                    y = 35 * Math.sin(t * 6 - wavePhase2D) * Math.exp(-0.25 * t);
+                    break;
+                case 'critical':
+                    y = 70 * t * Math.exp(-0.7 * t) - 30;
+                    break;
+                case 'over':
+                    y = 50 * (1 - Math.exp(-0.5 * t)) - 25;
+                    break;
+            }
+            
+            let canvasY = oscY + oscH / 2 - y;
+            if (sx === 0) ctx2D.moveTo(oscX + sx, canvasY);
+            else ctx2D.lineTo(oscX + sx, canvasY);
+        }
+        ctx2D.stroke();
+        
+        ctx2D.fillStyle = '#64748b';
+        ctx2D.font = '10px monospace';
+        ctx2D.fillText("CRT OSCILLOSCOPE (2D)", oscX + 10, oscY + 20);
+        
+        // --- 2. Draw Analog Gauge ---
+        const gaugeX = w - 130;
+        const gaugeY = 110;
+        const gaugeR = 65;
+        
+        ctx2D.fillStyle = '#1e293b';
+        ctx2D.beginPath(); ctx2D.arc(gaugeX, gaugeY, gaugeR + 6, 0, Math.PI * 2); ctx2D.fill();
+        ctx2D.strokeStyle = '#475569';
+        ctx2D.lineWidth = 2;
+        ctx2D.stroke();
+        
+        ctx2D.fillStyle = '#f8fafc';
+        ctx2D.beginPath(); ctx2D.arc(gaugeX, gaugeY, gaugeR, 0, Math.PI * 2); ctx2D.fill();
+        
+        // Gauge limits
+        ctx2D.strokeStyle = '#94a3b8';
+        ctx2D.lineWidth = 2;
+        ctx2D.beginPath();
+        ctx2D.moveTo(gaugeX - Math.cos(Math.PI / 6) * (gaugeR - 8), gaugeY - Math.sin(Math.PI / 6) * (gaugeR - 8));
+        ctx2D.lineTo(gaugeX - Math.cos(Math.PI / 6) * gaugeR, gaugeY - Math.sin(Math.PI / 6) * gaugeR);
+        ctx2D.stroke();
+        
+        ctx2D.strokeStyle = '#ef4444';
+        ctx2D.beginPath();
+        ctx2D.moveTo(gaugeX, gaugeY - gaugeR + 8);
+        ctx2D.lineTo(gaugeX, gaugeY - gaugeR);
+        ctx2D.stroke();
+        
+        let q = 0;
+        let tVal = time;
+        switch(dampingMode) {
+            case 'intro': q = 0; break;
+            case 'pcb': q = 0.5 + 0.4 * Math.sin(tVal * 2); break;
+            case 'under':
+                tVal = tVal % 6;
+                q = 1 - Math.exp(-0.8 * tVal) * Math.cos(5 * tVal);
+                break;
+            case 'critical':
+                tVal = tVal % 4;
+                q = 1 - (1 + 4 * tVal) * Math.exp(-4 * tVal);
+                break;
+            case 'over':
+                tVal = tVal % 5;
+                q = 1 - Math.exp(-0.8 * tVal);
+                break;
+        }
+        
+        let targetAngle = (1 - q) * (Math.PI / 3);
+        let actualAngle = -Math.PI / 2 - needleAngle;
+        needleAngle += (targetAngle - needleAngle) * 0.15;
+        
+        ctx2D.strokeStyle = '#0f172a';
+        ctx2D.lineWidth = 3;
+        ctx2D.beginPath();
+        ctx2D.moveTo(gaugeX, gaugeY);
+        ctx2D.lineTo(gaugeX + Math.cos(actualAngle) * (gaugeR - 10), gaugeY + Math.sin(actualAngle) * (gaugeR - 10));
+        ctx2D.stroke();
+        
+        ctx2D.fillStyle = '#0f172a';
+        ctx2D.beginPath(); ctx2D.arc(gaugeX, gaugeY, 6, 0, Math.PI * 2); ctx2D.fill();
+        
+        ctx2D.fillStyle = '#64748b';
+        ctx2D.font = '9px monospace';
+        ctx2D.fillText("CHARGE METER", gaugeX - 35, gaugeY + 45);
+        
+        // --- 3. Draw PCB & Schematic ---
+        const boardY = Math.max(h * 0.48, 260);
+        const boardH = h - boardY - 30;
+        const boardW = w - 60;
+        const boardX = 30;
+        
+        ctx2D.fillStyle = 'rgba(6, 78, 59, 0.4)';
+        ctx2D.fillRect(boardX, boardY, boardW, boardH);
+        ctx2D.strokeStyle = 'rgba(16, 185, 129, 0.3)';
+        ctx2D.lineWidth = 2;
+        ctx2D.strokeRect(boardX, boardY, boardW, boardH);
+        
+        const marginX = 60;
+        const marginY = 45;
+        const sLeft = boardX + marginX;
+        const sRight = boardX + boardW - marginX;
+        const sTop = boardY + marginY;
+        const sBottom = boardY + boardH - marginY;
+        
+        ctx2D.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx2D.lineWidth = 3;
+        ctx2D.beginPath(); ctx2D.moveTo(sLeft, sBottom); ctx2D.lineTo(sLeft, sTop); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(sLeft, sTop); ctx2D.lineTo(sRight, sTop); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(sRight, sTop); ctx2D.lineTo(sRight, sBottom); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(sRight, sBottom); ctx2D.lineTo(sLeft, sBottom); ctx2D.stroke();
+        
+        // Inductor L
+        const midY = (sTop + sBottom) / 2;
+        ctx2D.fillStyle = '#064e3b';
+        ctx2D.fillRect(sLeft - 12, midY - 25, 24, 50);
+        ctx2D.strokeStyle = '#b45309';
+        ctx2D.lineWidth = 3;
+        ctx2D.beginPath();
+        for (let cy = midY - 18; cy <= midY + 18; cy += 9) {
+            ctx2D.arc(sLeft, cy, 7, -Math.PI / 2, Math.PI / 2);
+        }
+        ctx2D.stroke();
+        ctx2D.fillStyle = '#e2e8f0';
+        ctx2D.font = 'bold 11px sans-serif';
+        ctx2D.fillText("L (Inductor)", sLeft - 70, midY + 4);
+        
+        // Capacitor C
+        const midX = (sLeft + sRight) / 2;
+        ctx2D.fillStyle = '#064e3b';
+        ctx2D.fillRect(midX - 25, sTop - 20, 50, 40);
+        ctx2D.strokeStyle = '#0284c7';
+        ctx2D.lineWidth = 4;
+        ctx2D.beginPath(); ctx2D.moveTo(midX - 6, sTop - 15); ctx2D.lineTo(midX - 6, sTop + 15); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(midX + 6, sTop - 15); ctx2D.lineTo(midX + 6, sTop + 15); ctx2D.stroke();
+        ctx2D.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx2D.lineWidth = 3;
+        ctx2D.beginPath(); ctx2D.moveTo(midX - 25, sTop); ctx2D.lineTo(midX - 6, sTop); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(midX + 6, sTop); ctx2D.lineTo(midX + 25, sTop); ctx2D.stroke();
+        ctx2D.fillStyle = '#e2e8f0';
+        ctx2D.fillText("C (Capacitor)", midX - 35, sTop - 22);
+        
+        // Resistor R
+        ctx2D.fillStyle = '#064e3b';
+        ctx2D.fillRect(midX - 35, sBottom - 15, 70, 30);
+        ctx2D.fillStyle = '#d97706';
+        ctx2D.fillRect(midX - 20, sBottom - 8, 40, 16);
+        ctx2D.strokeStyle = '#92400e';
+        ctx2D.strokeRect(midX - 20, sBottom - 8, 40, 16);
+        
+        ctx2D.fillStyle = '#ef4444'; ctx2D.fillRect(midX - 10, sBottom - 8, 4, 16);
+        ctx2D.fillStyle = '#3b82f6'; ctx2D.fillRect(midX, sBottom - 8, 4, 16);
+        ctx2D.fillStyle = '#eab308'; ctx2D.fillRect(midX + 10, sBottom - 8, 4, 16);
+        
+        ctx2D.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx2D.lineWidth = 3;
+        ctx2D.beginPath(); ctx2D.moveTo(midX - 35, sBottom); ctx2D.lineTo(midX - 20, sBottom); ctx2D.stroke();
+        ctx2D.beginPath(); ctx2D.moveTo(midX + 20, sBottom); ctx2D.lineTo(midX + 35, sBottom); ctx2D.stroke();
+        ctx2D.fillStyle = '#e2e8f0';
+        ctx2D.fillText("R (Resistor)", midX - 32, sBottom + 25);
+        
+        // Voltage Source
+        ctx2D.fillStyle = '#064e3b';
+        ctx2D.fillRect(sRight - 20, midY - 20, 40, 40);
+        ctx2D.strokeStyle = '#e2e8f0';
+        ctx2D.lineWidth = 2;
+        ctx2D.beginPath(); ctx2D.arc(sRight, midY, 15, 0, Math.PI * 2); ctx2D.stroke();
+        ctx2D.font = '10px sans-serif';
+        ctx2D.fillStyle = '#e2e8f0';
+        ctx2D.fillText("+", sRight - 4, midY - 3);
+        ctx2D.fillText("-", sRight - 3, midY + 9);
+        ctx2D.fillText("V(t)", sRight + 22, midY + 4);
+        
+        // --- 4. Draw Animated Electrons ---
+        const loopW = sRight - sLeft;
+        const loopH = sBottom - sTop;
+        const totalLen = (loopW + loopH) * 2;
+        
+        let electronSpeed2D = 0;
+        let colorHex = '#06b6d4';
+        
+        switch (dampingMode) {
+            case 'intro':
+                electronSpeed2D = 0.05;
+                colorHex = '#06b6d4';
+                break;
+            case 'pcb':
+                electronSpeed2D = 0.05 * Math.sin(time * 1.5);
+                colorHex = '#a855f7';
+                break;
+            case 'under':
+                const tu = time % 6;
+                electronSpeed2D = 0.3 * Math.sin(tu * 12) * Math.exp(-0.35 * tu);
+                colorHex = '#06b6d4';
+                break;
+            case 'critical':
+                const tc = time % 4;
+                electronSpeed2D = 0.15 * (10 - 10 * tc) * Math.exp(-1.5 * tc);
+                colorHex = '#10b981';
+                break;
+            case 'over':
+                const to = time % 5;
+                electronSpeed2D = 0.02 * Math.exp(-0.4 * to);
+                colorHex = '#ef4444';
+                break;
+        }
+        
+        for (let i = 0; i < electronCount; i++) {
+            electrons2D[i] += electronSpeed2D * deltaTime;
+            if (electrons2D[i] < 0) electrons2D[i] += 1.0;
+            if (electrons2D[i] > 1.0) electrons2D[i] -= 1.0;
+            
+            let progress = electrons2D[i] * totalLen;
+            let ex = sLeft;
+            let ey = sBottom;
+            
+            if (progress < loopW) {
+                ex = sRight - progress;
+                ey = sBottom;
+            } else if (progress < loopW + loopH) {
+                ex = sLeft;
+                ey = sBottom - (progress - loopW);
+            } else if (progress < loopW * 2 + loopH) {
+                ex = sLeft + (progress - (loopW + loopH));
+                ey = sTop;
+            } else {
+                ex = sRight;
+                ey = sTop + (progress - (loopW * 2 + loopH));
+            }
+            
+            if (ey === sTop && ex > midX - 6 && ex < midX + 6) continue;
+            
+            ctx2D.fillStyle = colorHex;
+            ctx2D.shadowColor = colorHex;
+            ctx2D.shadowBlur = 6;
+            ctx2D.beginPath();
+            ctx2D.arc(ex, ey, 5, 0, Math.PI * 2);
+            ctx2D.fill();
+            ctx2D.shadowBlur = 0;
+        }
+        
+        // Update overlay text in sync with scroll
+        const titleOverlay = document.getElementById('overlay-state-title');
+        const descOverlay = document.getElementById('overlay-state-desc');
+        if (titleOverlay && descOverlay) {
+            titleOverlay.innerText = stateTitles[dampingMode] + " (2D)";
+            descOverlay.innerText = stateDescs[dampingMode];
+        }
+    }
+    
+    animate2D();
+}
+
 // --- Launch on Document Load ---
-window.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', init);
+} else {
     init();
-});
+}

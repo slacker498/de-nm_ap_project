@@ -67,10 +67,30 @@
                         class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our
                         Team</a>
                 </nav>
-                <div class="md:hidden">
-                    <!-- Mobile nav indicator -->
-                    <span
-                        class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Model</span>
+                <div class="md:hidden relative">
+                    <button id="mobile-nav-toggle" class="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-slate-200 flex items-center space-x-1.5 focus:outline-none transition-all duration-200 active:scale-95">
+                        <span>Model</span>
+                        <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <!-- Mobile Nav Menu -->
+                    <div id="mobile-nav-menu" class="hidden absolute right-0 mt-2 w-48 bg-slate-950/95 border border-white/10 rounded-xl shadow-xl backdrop-blur-md py-2 z-50">
+                        <a href="index.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Home</a>
+                        <a href="model.html" class="block px-4 py-2 text-xs font-semibold text-accentcyan hover:bg-white/5">Model & Derivation</a>
+                        <a href="code.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">MATLAB Code</a>
+                        <a href="results.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Results & Analysis</a>
+                        <a href="team.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Our Team</a>
+                    </div>
+                    <script>
+                        document.getElementById('mobile-nav-toggle').addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            document.getElementById('mobile-nav-menu').classList.toggle('hidden');
+                        });
+                        document.addEventListener('click', function() {
+                            document.getElementById('mobile-nav-menu').classList.add('hidden');
+                        });
+                    </script>
                 </div>
             </div>
         </div>
@@ -270,21 +290,30 @@
                             <td class="p-4 font-mono text-slate-300">\(\alpha < \omega_0\) (Low R)</td>
                             <td class="p-4 text-slate-300 text-sm">Current and charge swing back and forth (oscillate)
                                 with decaying amplitude.</td>
-                            <td class="p-4 text-slate-400 text-sm">Radio tuning, filters, transmitters.</td>
+                            <td class="p-4 text-slate-300 text-sm">
+                                <strong class="text-white">Radio tuning, filters, transmitters.</strong>
+                                <span class="block text-xs text-slate-400 mt-1">Reason: Temporary oscillations help the circuit isolate and strengthen a particular resonant signal or frequency.</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="p-4"><span class="damping-badge damping-critical">Critically Damped</span></td>
                             <td class="p-4 font-mono text-slate-300">\(\alpha = \omega_0\) (Optimal R)</td>
                             <td class="p-4 text-slate-300 text-sm">Returns to equilibrium in the minimum possible time
                                 without any oscillations.</td>
-                            <td class="p-4 text-slate-400 text-sm">Measuring instruments, CD players.</td>
+                            <td class="p-4 text-slate-300 text-sm">
+                                <strong class="text-white">Precision measuring instruments, CD players.</strong>
+                                <span class="block text-xs text-slate-400 mt-1">Reason: Quick return to equilibrium without ringing provides maximum speed and measurement stability.</span>
+                            </td>
                         </tr>
                         <tr>
                             <td class="p-4"><span class="damping-badge damping-over">Overdamped</span></td>
                             <td class="p-4 font-mono text-slate-300">\(\alpha > \omega_0\) (High R)</td>
                             <td class="p-4 text-slate-300 text-sm">Slowly decays back to equilibrium without any
                                 oscillations.</td>
-                            <td class="p-4 text-slate-400 text-sm">Surge suppressors, protection circuits.</td>
+                            <td class="p-4 text-slate-300 text-sm">
+                                <strong class="text-white">Surge suppressors, protection circuits.</strong>
+                                <span class="block text-xs text-slate-400 mt-1">Reason: Slowly decays without oscillating, which is critical in protective systems where preventing voltage surges overrides speed.</span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -336,6 +365,10 @@
                     <p class="mt-5 mb-2"><strong class="text-white">2) When \(\Delta = 0\)</strong> (critically damped —
                         repeated roots):</p>
                     <div class="text-center my-3">$$r = \frac{-R/L}{2} = \frac{-R}{2L}$$</div>
+                    <p class="mb-2">Since we have one root, we find any solution by multiplying by \(t\):</p>
+                    <div class="text-center my-3">$$q_h(t) = C_1 e^{rt} + C_2 t e^{rt}$$</div>
+                    <div class="text-center my-3">$$q_h(t) = (C_1 + C_2 t) e^{rt}$$</div>
+                    <div class="text-center my-3">$$q(t) = (C_1 + C_2 t) e^{-\frac{R}{2L}t} + q_p(t)$$</div>
                 </div>
 
                 <!-- Step 2: Worked Example -->
