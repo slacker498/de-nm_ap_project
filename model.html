@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +33,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body class="bg-darkbg bg-dots">
 
     <!-- Header Navigation -->
@@ -40,7 +42,9 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center space-x-3">
                     <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">Ω</div>
+                        <div
+                            class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">
+                            Ω</div>
                         <div>
                             <span class="font-bold text-white text-lg tracking-wide block">RLC Dynamics</span>
                             <span class="block text-xs text-slate-400">Applied Project</span>
@@ -48,15 +52,25 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
-                    <a href="model.html" class="nav-link text-sm font-medium text-white transition duration-200 active">Model & Derivation</a>
-                    <a href="code.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB Code</a>
-                    <a href="results.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Results & Analysis</a>
-                    <a href="team.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our Team</a>
+                    <a href="index.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
+                    <a href="model.html"
+                        class="nav-link text-sm font-medium text-white transition duration-200 active">Model &
+                        Derivation</a>
+                    <a href="code.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB
+                        Code</a>
+                    <a href="results.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Results
+                        & Analysis</a>
+                    <a href="team.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our
+                        Team</a>
                 </nav>
                 <div class="md:hidden">
                     <!-- Mobile nav indicator -->
-                    <span class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Model</span>
+                    <span
+                        class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Model</span>
                 </div>
             </div>
         </div>
@@ -65,7 +79,8 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Page Title Section -->
         <div class="text-center mb-16">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-accentcyan text-xs font-semibold mb-4 tracking-wider uppercase">
+            <div
+                class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-accentcyan text-xs font-semibold mb-4 tracking-wider uppercase">
                 Differential Equations Course Focus
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
@@ -79,28 +94,37 @@
         <!-- Section 1: Problem Definition -->
         <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-            
+
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
                 1. Circuit Description & Problem Definition
             </h2>
-            
+
             <p class="text-slate-300 mb-6 leading-relaxed">
-                To really understand why electrical devices don’t just jump to action when they are plugged in or turned on, we need to understand what RLC (Resistor, Inductor, Capacitor) circuits are and the mathematics behind them. When we apply KVL (Kirchhoff’s Voltage Law) to a standard series RLC circuit, we uncover a second-order differential equation that forms the basis of all of our analysis in this project.
+                To really understand why electrical devices don’t just jump to action when they are plugged in or turned
+                on, we need to understand what RLC (Resistor, Inductor, Capacitor) circuits are and the mathematics
+                behind them. When we apply KVL (Kirchhoff’s Voltage Law) to a standard series RLC circuit, we uncover a
+                second-order differential equation that forms the basis of all of our analysis in this project.
             </p>
 
             <!-- Circuit schematic image container -->
             <div class="my-10 bg-slate-950/40 border border-white/5 rounded-xl p-6 flex flex-col items-center">
-                <img src="resources/media/image2.png" alt="Standard RLC Series Circuit Schematic" class="rounded-lg shadow-lg border border-white/10 max-h-80 w-auto mb-4 hover:scale-[1.01] transition-transform duration-300">
-                <span class="text-xs text-slate-400 italic">Figure a: Standard RLC Series Circuit Diagram (Resistor R, Inductor L, Capacitor C in series with Voltage Source V(t))</span>
+                <img src="resources/media/image2.png" alt="Standard RLC Series Circuit Schematic"
+                    class="rounded-lg shadow-lg border border-white/10 max-h-80 w-auto mb-4 hover:scale-[1.01] transition-transform duration-300">
+                <span class="text-xs text-slate-400 italic">Figure a: Standard RLC Series Circuit Diagram (Resistor R,
+                    Inductor L, Capacitor C in series with Voltage Source V(t))</span>
             </div>
 
             <p class="text-slate-300 mb-6 leading-relaxed">
-                Kirchhoff’s Voltage Law states that the algebraic sum of all voltages around any closed loop in a circuit must equal zero. Applying KVL to our series loop, the sum of the voltage drops across the resistor, inductor, and capacitor must equal the applied voltage source \(F(t)\):
+                Kirchhoff’s Voltage Law states that the algebraic sum of all voltages around any closed loop in a
+                circuit must equal zero. Applying KVL to our series loop, the sum of the voltage drops across the
+                resistor, inductor, and capacitor must equal the applied voltage source \(F(t)\):
             </p>
 
             <!-- Main differential equation box -->
-            <div class="my-8 bg-gradient-to-r from-slate-900 to-indigo-950/40 border border-cyan-500/20 rounded-xl p-6 text-center shadow-lg relative">
-                <div class="absolute top-2 left-4 text-xs font-semibold text-accentcyan uppercase tracking-wider">Governing ODE</div>
+            <div
+                class="my-8 bg-gradient-to-r from-slate-900 to-indigo-950/40 border border-cyan-500/20 rounded-xl p-6 text-center shadow-lg relative">
+                <div class="absolute top-2 left-4 text-xs font-semibold text-accentcyan uppercase tracking-wider">
+                    Governing ODE</div>
                 <div class="text-2xl md:text-3xl font-mono text-white my-4 overflow-x-auto py-2">
                     $$L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q(t) = F(t)$$
                 </div>
@@ -109,45 +133,57 @@
             <h3 class="text-lg font-semibold text-white mb-4">Variable Definitions:</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-cyan-500/10 flex items-center justify-center font-bold text-accentcyan text-sm">F(t)</span>
+                    <span
+                        class="w-8 h-8 rounded bg-cyan-500/10 flex items-center justify-center font-bold text-accentcyan text-sm">F(t)</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Voltage Source</span>
-                        <span class="block text-xs text-slate-400">The external forcing function applied as a function of time (V).</span>
+                        <span class="block text-xs text-slate-400">The external forcing function applied as a function
+                            of time (V).</span>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-purple-500/10 flex items-center justify-center font-bold text-accentpurple text-sm">q(t)</span>
+                    <span
+                        class="w-8 h-8 rounded bg-purple-500/10 flex items-center justify-center font-bold text-accentpurple text-sm">q(t)</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Electric Charge</span>
-                        <span class="block text-xs text-slate-400">The instantaneous charge accumulated on the capacitor plates (C).</span>
+                        <span class="block text-xs text-slate-400">The instantaneous charge accumulated on the capacitor
+                            plates (C).</span>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-yellow-500/10 flex items-center justify-center font-bold text-amber-400 text-sm">L</span>
+                    <span
+                        class="w-8 h-8 rounded bg-yellow-500/10 flex items-center justify-center font-bold text-amber-400 text-sm">L</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Inductance</span>
-                        <span class="block text-xs text-slate-400">The measure of the inductor's opposition to changes in current flow (H).</span>
+                        <span class="block text-xs text-slate-400">The measure of the inductor's opposition to changes
+                            in current flow (H).</span>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-indigo-500/10 flex items-center justify-center font-bold text-indigo-400 text-sm">R</span>
+                    <span
+                        class="w-8 h-8 rounded bg-indigo-500/10 flex items-center justify-center font-bold text-indigo-400 text-sm">R</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Resistance</span>
-                        <span class="block text-xs text-slate-400">The measure of energy dissipation in the system (ohms, Ω).</span>
+                        <span class="block text-xs text-slate-400">The measure of energy dissipation in the system
+                            (ohms, Ω).</span>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-emerald-500/10 flex items-center justify-center font-bold text-emerald-400 text-sm">C</span>
+                    <span
+                        class="w-8 h-8 rounded bg-emerald-500/10 flex items-center justify-center font-bold text-emerald-400 text-sm">C</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Capacitance</span>
-                        <span class="block text-xs text-slate-400">The capacity of the capacitor to store electrical charge (F).</span>
+                        <span class="block text-xs text-slate-400">The capacity of the capacitor to store electrical
+                            charge (F).</span>
                     </div>
                 </div>
                 <div class="flex items-start space-x-3 p-3 rounded-lg bg-white/5 border border-white/5">
-                    <span class="w-8 h-8 rounded bg-slate-500/10 flex items-center justify-center font-bold text-slate-300 text-sm">i(t)</span>
+                    <span
+                        class="w-8 h-8 rounded bg-slate-500/10 flex items-center justify-center font-bold text-slate-300 text-sm">i(t)</span>
                     <div>
                         <span class="block text-sm font-semibold text-white">Current \(i(t) = \frac{dq}{dt}\)</span>
-                        <span class="block text-xs text-slate-400">The flow of electric charge, which is the rate of change of charge (A).</span>
+                        <span class="block text-xs text-slate-400">The flow of electric charge, which is the rate of
+                            change of charge (A).</span>
                     </div>
                 </div>
             </div>
@@ -155,32 +191,40 @@
             <h3 class="text-lg font-semibold text-white mb-3">Model Assumptions:</h3>
             <ul class="list-disc pl-5 text-slate-300 space-y-2">
                 <li>The resistor only provides linear resistance \(R\), governed by Ohm's Law (\(V_R = R i\)).</li>
-                <li>The inductor only provides linear inductance \(L\), governed by Faraday's Law (\(V_L = L \frac{di}{dt}\)).</li>
-                <li>The capacitor only stores charge with constant capacitance \(C\), governed by (\(V_C = \frac{q}{C}\)).</li>
+                <li>The inductor only provides linear inductance \(L\), governed by Faraday's Law (\(V_L = L
+                    \frac{di}{dt}\)).</li>
+                <li>The capacitor only stores charge with constant capacitance \(C\), governed by (\(V_C =
+                    \frac{q}{C}\)).</li>
                 <li>At every instant, the voltage around a closed loop is 0 (KVL applies perfectly).</li>
-                <li>The parameter values \(R\), \(L\), and \(C\) are lumped and constant (they do not vary with time or current level).</li>
+                <li>The parameter values \(R\), \(L\), and \(C\) are lumped and constant (they do not vary with time or
+                    current level).</li>
             </ul>
         </section>
 
         <!-- Section 2: Damping Coefficient & Natural Resonant Frequency -->
         <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
-            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl pointer-events-none">
+            </div>
+
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
                 2. Damping Dynamics
             </h2>
-            
+
             <p class="text-slate-300 mb-6 leading-relaxed">
-                As George Maria Selvam and Vignesh (2018) point out, we can simplify our analysis of the circuit by looking at the interaction of two rival physical characteristics: the <strong>damping coefficient (\(\alpha\))</strong> and the <strong>natural resonant frequency (\(\omega_0\))</strong>.
+                As George Maria Selvam and Vignesh (2018) point out, we can simplify our analysis of the circuit by
+                looking at the interaction of two rival physical characteristics: the <strong>damping coefficient
+                    (\(\alpha\))</strong> and the <strong>natural resonant frequency (\(\omega_0\))</strong>.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col justify-between">
                     <div>
-                        <div class="text-xs font-semibold text-accentcyan uppercase tracking-wider mb-2">System Friction</div>
+                        <div class="text-xs font-semibold text-accentcyan uppercase tracking-wider mb-2">System Friction
+                        </div>
                         <h4 class="text-xl font-bold text-white mb-2">Damping Coefficient (\(\alpha\))</h4>
                         <p class="text-sm text-slate-400 mb-4">
-                            Determined entirely by the resistor, which actively works to slow the current down and dissipate energy as heat.
+                            Determined entirely by the resistor, which actively works to slow the current down and
+                            dissipate energy as heat.
                         </p>
                     </div>
                     <div class="text-center bg-slate-900/60 p-4 rounded-lg text-2xl font-mono text-white">
@@ -190,10 +234,12 @@
 
                 <div class="bg-white/5 border border-white/10 rounded-xl p-6 flex flex-col justify-between">
                     <div>
-                        <div class="text-xs font-semibold text-accentpurple uppercase tracking-wider mb-2">System Vibrancy</div>
+                        <div class="text-xs font-semibold text-accentpurple uppercase tracking-wider mb-2">System
+                            Vibrancy</div>
                         <h4 class="text-xl font-bold text-white mb-2">Natural Resonant Frequency (\(\omega_0\))</h4>
                         <p class="text-sm text-slate-400 mb-4">
-                            Represents the circuit’s natural desire to oscillate, dictated by the rate at which the inductor and capacitor swap stored energy.
+                            Represents the circuit’s natural desire to oscillate, dictated by the rate at which the
+                            inductor and capacitor swap stored energy.
                         </p>
                     </div>
                     <div class="text-center bg-slate-900/60 p-4 rounded-lg text-2xl font-mono text-white">
@@ -203,7 +249,8 @@
             </div>
 
             <p class="text-slate-300 mb-6 leading-relaxed">
-                The relationship between \(\alpha\) and \(\omega_0\) determines which of the three response modes the circuit will exhibit when disturbed:
+                The relationship between \(\alpha\) and \(\omega_0\) determines which of the three response modes the
+                circuit will exhibit when disturbed:
             </p>
 
             <!-- Table of Damping States -->
@@ -221,19 +268,22 @@
                         <tr>
                             <td class="p-4"><span class="damping-badge damping-under">Underdamped</span></td>
                             <td class="p-4 font-mono text-slate-300">\(\alpha < \omega_0\) (Low R)</td>
-                            <td class="p-4 text-slate-300 text-sm">Current and charge swing back and forth (oscillate) with decaying amplitude.</td>
+                            <td class="p-4 text-slate-300 text-sm">Current and charge swing back and forth (oscillate)
+                                with decaying amplitude.</td>
                             <td class="p-4 text-slate-400 text-sm">Radio tuning, filters, transmitters.</td>
                         </tr>
                         <tr>
                             <td class="p-4"><span class="damping-badge damping-critical">Critically Damped</span></td>
                             <td class="p-4 font-mono text-slate-300">\(\alpha = \omega_0\) (Optimal R)</td>
-                            <td class="p-4 text-slate-300 text-sm">Returns to equilibrium in the minimum possible time without any oscillations.</td>
+                            <td class="p-4 text-slate-300 text-sm">Returns to equilibrium in the minimum possible time
+                                without any oscillations.</td>
                             <td class="p-4 text-slate-400 text-sm">Measuring instruments, CD players.</td>
                         </tr>
                         <tr>
                             <td class="p-4"><span class="damping-badge damping-over">Overdamped</span></td>
                             <td class="p-4 font-mono text-slate-300">\(\alpha > \omega_0\) (High R)</td>
-                            <td class="p-4 text-slate-300 text-sm">Slowly decays back to equilibrium without any oscillations.</td>
+                            <td class="p-4 text-slate-300 text-sm">Slowly decays back to equilibrium without any
+                                oscillations.</td>
                             <td class="p-4 text-slate-400 text-sm">Surge suppressors, protection circuits.</td>
                         </tr>
                     </tbody>
@@ -243,83 +293,109 @@
 
         <!-- Section 3: Analytical Derivations -->
         <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
-            
+            <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none">
+            </div>
+
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
                 3. Analytical Solution Attempt
             </h2>
-            
+
             <p class="text-slate-300 mb-6 leading-relaxed">
-                The initial attempt to solve the differential equation was performed under the assumption that the voltage source is a direct current source (DC), with initial conditions of \(q(0) = 0\) and \(q'(0) = 0\) (charge and current are zero when the circuit closes). This analytical solution focuses on the critically damped and overdamped states.
+                This initial attempt to solve the differential equation was based on the assumption that the voltage
+                source is a direct current source and used initial conditions of \(q(0) = 0\) and \(q'(0) = 0\) (it was
+                assumed that the charge at the moment the circuit was closed is 0). This analytical solution does not
+                contain a general solution for the underdamped case — it contains solutions for when the system is
+                overdamped or critically damped.
             </p>
 
-            <div class="my-6 bg-slate-950/20 border border-white/5 rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-white mb-4">Initial Parameter Setup (from project configurations):</h3>
-                <ul class="list-disc pl-5 text-slate-300 space-y-2 text-sm">
-                    <li>Inductance \(L = 1 \text{ H}\)</li>
-                    <li>Capacitance \(C = 0.01 \text{ F}\) (Natural resonant frequency \(\omega_0 = 10 \text{ rad/s}\))</li>
-                    <li>Applied Voltage \(V_{DC} = 100 \text{ V}\)</li>
-                </ul>
-            </div>
+            <h3 class="text-xl font-bold text-white mt-8 mb-6">Solution</h3>
 
-            <!-- Mathematical Derivations -->
-            <h3 class="text-xl font-bold text-white mt-8 mb-4">Derivation Breakdown & Equations</h3>
-            <p class="text-slate-300 mb-8 text-sm leading-relaxed">
-                Below is the exact step-by-step mathematical derivation of the analytical solutions based on the KVL equation.
-            </p>
+            <div class="space-y-10 text-slate-300">
 
-            <div class="space-y-12 text-slate-300">
+                <!-- Step 1: General Symbolic Approach -->
                 <div class="bg-slate-950/40 border border-white/10 rounded-xl p-8">
-                    <h4 class="text-lg font-bold text-white mb-4">1. Characteristic Equation & Roots</h4>
-                    <p class="mb-4">From the governing ODE: $$L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q(t) = F(t)$$</p>
-                    <p class="mb-4">The homogeneous equation is: $$L r^2 + R r + \frac{1}{C} = 0$$</p>
-                    <p class="mb-4">Substituting the fixed parameters \(L = 1\), \(C = 0.01\): $$r^2 + R r + 100 = 0$$</p>
-                    <p class="mb-4">Using the quadratic formula, the roots are: $$r_{1,2} = \frac{-R \pm \sqrt{R^2 - 400}}{2}$$</p>
+                    <h4 class="text-lg font-bold text-white mb-4">Case 1: General Solution (Symbolic Approach) — Assume
+                        Voltage Source is DC</h4>
+                    <div class="text-center my-4">$$Lq'' + Rq' + \frac{1}{C}q = V(t)$$</div>
+                    <p class="mb-3">Finding the homogeneous solution — ignoring \(V(t)\):</p>
+                    <div class="text-center my-4">$$Lq'' + Rq' + \frac{1}{C}q = 0$$</div>
+                    <p class="mb-3">Dividing through by \(L\):</p>
+                    <div class="text-center my-4">$$q'' + \frac{R}{L}q' + \frac{1}{LC}q = 0$$</div>
+                    <p class="mb-3">Let \(q = e^{rt}\) — characteristic equation:</p>
+                    <div class="text-center my-4">$$r^2 + \frac{R}{L}r + \frac{1}{LC} = 0$$</div>
+                    <p class="mb-3">Using the discriminant \(\Delta = b^2 - 4ac\):</p>
+                    <div class="text-center my-4">$$\Delta = \left(\frac{R}{L}\right)^2 - \left(\frac{4}{LC}\right)$$
+                    </div>
+                    <p class="mt-4 mb-2"><strong class="text-white">1) When \(\Delta > 0\)</strong> (real roots,
+                        overdamped):</p>
+                    <div class="text-center my-3">$$r_1 = \frac{-R/L + \sqrt{\Delta}}{2}, \qquad r_2 = \frac{-R/L -
+                        \sqrt{\Delta}}{2} \quad \text{(from the quadratic formula)}$$</div>
+                    <div class="text-center my-3">$$q_h(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}$$</div>
+                    <p class="mb-2">Since \(V_0\) is constant (DC source):</p>
+                    <div class="text-center my-3">$$q(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t} + q_p(t)$$</div>
+                    <p class="mt-5 mb-2"><strong class="text-white">2) When \(\Delta = 0\)</strong> (critically damped —
+                        repeated roots):</p>
+                    <div class="text-center my-3">$$r = \frac{-R/L}{2} = \frac{-R}{2L}$$</div>
                 </div>
 
+                <!-- Step 2: Worked Example -->
                 <div class="bg-slate-950/40 border border-white/10 rounded-xl p-8">
-                    <h4 class="text-lg font-bold text-white mb-4">2. Overdamped Solution (\(R = 100\ \Omega\))</h4>
-                    <p class="mb-4">For \(R = 100\), the roots are real and distinct: $$r_{1,2} = \frac{-100 \pm \sqrt{100^2 - 400}}{2} = -50 \pm 48.99$$</p>
-                    <p class="mb-4">$$r_1 = -1.01, \quad r_2 = -98.99$$</p>
-                    <p class="mb-4">The general solution is: $$q(t) = c_1 e^{-1.01t} + c_2 e^{-98.99t} + q_p$$</p>
-                    <p class="mb-4">With \(F(t) = 100\), the particular solution is \(q_p = C \times 100 = 0.01 \times 100 = 1\).</p>
-                    <p class="mb-4">Applying initial conditions \(q(0) = 0\) and \(q'(0) = 0\):</p>
-                    <p class="mb-4">$$0 = c_1 + c_2 + 1 \implies c_2 = -1 - c_1$$</p>
-                    <p class="mb-4">$$0 = -1.01 c_1 - 98.99 c_2 \implies -1.01 c_1 - 98.99(-1 - c_1) = 0 \implies 97.98 c_1 = -98.99 \implies c_1 = -1.01$$</p>
-                    <p class="mb-4">$$c_2 = 0.01$$</p>
-                    <p class="mb-4 font-mono text-center text-accentcyan text-lg">Final Equation: $$q(t) = 1 - 1.01 e^{-1.01 t} + 0.01 e^{-98.99 t}$$</p>
+                    <h4 class="text-lg font-bold text-white mb-4">Example — Sample Values for \(R\), \(L\) and \(C\)
+                        with Initial Conditions</h4>
+                    <div class="text-center my-4">$$L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q = V(t)$$</div>
+                    <p class="mb-3">With \(L = 1\), \(V = 100\), \(C = 0.01\), \(R = 25\):</p>
+                    <div class="text-center my-4">$$\frac{d^2q}{dt^2} + 25\frac{dq}{dt} + 100q = 100$$</div>
+                    <p class="mb-3 mt-5 font-semibold text-white">Homogeneous Solution:</p>
+                    <div class="text-center my-3">$$\frac{d^2q}{dt^2} + 25\frac{dq}{dt} + 100q = 0$$</div>
+                    <p class="mb-2">Let \(q = e^{rt}\):</p>
+                    <div class="text-center my-3">$$r^2 + 25r + 100 = 0$$</div>
+                    <div class="text-center my-3">$$r^2 + 5r + 20r + 100 = 0$$</div>
+                    <div class="text-center my-3">$$(r + 5) + 20(r + 5) = 0$$</div>
+                    <div class="text-center my-3">$$r = -20, \quad r = -5$$</div>
+                    <div class="text-center my-3">$$q_h(t) = Ae^{-20t} + Be^{-5t}$$</div>
+                    <div class="text-center my-3">$$q(t) = Ae^{-20t} + Be^{-5t} + q_p(t) \quad \text{where } V(t) = V_0
+                        = 100$$</div>
+                    <p class="mb-3 mt-5 font-semibold text-white">Particular Solution:</p>
+                    <p class="mb-2">Let \(q_p = k\), then \(q_p' = 0\) and \(q_p'' = 0\). Substituting:</p>
+                    <div class="text-center my-3">$$0 + 25(0) + 100k = V_0$$</div>
+                    <div class="text-center my-3">$$100k = 100 \implies k = 1$$</div>
+                    <div class="text-center my-3">$$q(t) = Ae^{-20t} + Be^{-5t} + 1$$</div>
                 </div>
 
+                <!-- Step 3: Applying Initial Conditions -->
                 <div class="bg-slate-950/40 border border-white/10 rounded-xl p-8">
-                    <h4 class="text-lg font-bold text-white mb-4">3. Critically Damped Solution (\(R = 20\ \Omega\))</h4>
-                    <p class="mb-4">For \(R = 20\), the discriminant is zero, yielding a repeated root: $$r = \frac{-20 \pm \sqrt{400 - 400}}{2} = -10$$</p>
-                    <p class="mb-4">The general solution is: $$q(t) = (c_1 + c_2 t) e^{-10t} + 1$$</p>
-                    <p class="mb-4">Applying \(q(0) = 0\): $$0 = c_1 + 1 \implies c_1 = -1$$</p>
-                    <p class="mb-4">Applying \(q'(0) = 0\): $$q'(t) = c_2 e^{-10t} - 10(c_1 + c_2 t) e^{-10t}$$</p>
-                    <p class="mb-4">$$0 = c_2 - 10(-1) \implies c_2 = -10$$</p>
-                    <p class="mb-4 font-mono text-center text-emerald-400 text-lg">Final Equation: $$q(t) = 1 - (1 + 10 t) e^{-10 t}$$</p>
+                    <h4 class="text-lg font-bold text-white mb-4">Applying Initial Conditions</h4>
+                    <p class="mb-3">Using \(q(0) = 0\) and \(q'(0) = 0\):</p>
+                    <div class="text-center my-3">$$0 = A + B + 1 \implies A + B = -1$$</div>
+                    <p class="mb-3">Differentiating \(q(t)\):</p>
+                    <div class="text-center my-3">$$q'(t) = -20Ae^{-20t} - 5Be^{-5t}$$</div>
+                    <div class="text-center my-3">$$q'(0) = 0 \implies -20A - 5B = 0$$</div>
+                    <p class="mb-3">Solving \(A + B = -1\) and \(-20A - 5B = 0\):</p>
+                    <div class="text-center my-3">$$A = \frac{1}{3}, \qquad B = -\frac{4}{3}$$</div>
+                    <p class="mb-4 font-semibold text-white">∴ The general solution is:</p>
+                    <div class="text-center my-4 text-accentcyan text-lg">$$q(t) = \frac{1}{3}e^{-20t} -
+                        \frac{4}{3}e^{-5t} + 1$$</div>
                 </div>
 
-                <div class="bg-slate-950/40 border border-white/10 rounded-xl p-8">
-                    <h4 class="text-lg font-bold text-white mb-4">4. Underdamped Solution (\(R = 2\ \Omega\))</h4>
-                    <p class="mb-4">For \(R = 2\), the roots are complex conjugates: $$r_{1,2} = \frac{-2 \pm \sqrt{4 - 400}}{2} = -1 \pm i\sqrt{99}$$</p>
-                    <p class="mb-4">The general solution is: $$q(t) = e^{-t} (c_1 \cos(\sqrt{99} t) + c_2 \sin(\sqrt{99} t)) + 1$$</p>
-                    <p class="mb-4">Applying \(q(0) = 0\): $$0 = c_1 + 1 \implies c_1 = -1$$</p>
-                    <p class="mb-4">Applying \(q'(0) = 0\): $$0 = -c_1 + \sqrt{99} c_2 \implies 1 + \sqrt{99} c_2 = 0 \implies c_2 = -\frac{1}{\sqrt{99}}$$</p>
-                    <p class="mb-4 font-mono text-center text-purple-400 text-lg">Final Equation: $$q(t) = 1 - e^{-t} \left(\cos(\sqrt{99} t) + \frac{1}{\sqrt{99}} \sin(\sqrt{99} t)\right)$$</p>
-                </div>
             </div>
         </section>
-
         <!-- Footer link back -->
         <div class="flex justify-between items-center mt-12 border-t border-white/10 pt-8">
-            <a href="index.html" class="flex items-center text-slate-400 hover:text-white transition duration-200 text-sm">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <a href="index.html"
+                class="flex items-center text-slate-400 hover:text-white transition duration-200 text-sm">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
                 Back to Introduction (Home)
             </a>
-            <a href="code.html" class="flex items-center text-accentcyan hover:text-cyan-400 transition duration-200 text-sm font-semibold">
+            <a href="code.html"
+                class="flex items-center text-accentcyan hover:text-cyan-400 transition duration-200 text-sm font-semibold">
                 Proceed to MATLAB Code
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l7-7m-7 7H3"></path></svg>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l7-7m-7 7H3">
+                    </path>
+                </svg>
             </a>
         </div>
     </main>
@@ -333,4 +409,5 @@
     </footer>
 
 </body>
+
 </html>

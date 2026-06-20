@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +35,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body class="bg-darkbg bg-dots">
 
     <!-- Header Navigation -->
@@ -42,7 +44,9 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center space-x-3">
                     <a href="index.html" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">Ω</div>
+                        <div
+                            class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-cyan-500/20">
+                            Ω</div>
                         <div>
                             <span class="font-bold text-white text-lg tracking-wide block">RLC Dynamics</span>
                             <span class="block text-xs text-slate-400">Applied Project</span>
@@ -50,14 +54,24 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
-                    <a href="model.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Model & Derivation</a>
-                    <a href="code.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB Code</a>
-                    <a href="results.html" class="nav-link text-sm font-medium text-white transition duration-200 active">Results & Analysis</a>
-                    <a href="team.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our Team</a>
+                    <a href="index.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
+                    <a href="model.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Model
+                        & Derivation</a>
+                    <a href="code.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB
+                        Code</a>
+                    <a href="results.html"
+                        class="nav-link text-sm font-medium text-white transition duration-200 active">Results &
+                        Analysis</a>
+                    <a href="team.html"
+                        class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our
+                        Team</a>
                 </nav>
                 <div class="md:hidden">
-                    <span class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Results</span>
+                    <span
+                        class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Results</span>
                 </div>
             </div>
         </div>
@@ -66,14 +80,16 @@
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Page Title Section -->
         <div class="text-center mb-16">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-accentgreen text-xs font-semibold mb-4 tracking-wider uppercase">
+            <div
+                class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-accentgreen text-xs font-semibold mb-4 tracking-wider uppercase">
                 Project Results Section
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
                 Simulation Results & Plot Analysis
             </h1>
             <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-                Comparing circuit behavior under different resistor values (damping coefficients) and input voltage types.
+                Comparing circuit behavior under different resistor values (damping coefficients) and input voltage
+                types.
             </p>
         </div>
 
@@ -83,7 +99,11 @@
                 1. System Response Under Damping Cases
             </h2>
             <p class="text-slate-300 mb-6 leading-relaxed">
-                As stated, RLC Series circuits can be analyzed with respect to their behavior under different damping conditions. A MATLAB simulation of such behaviors was performed using the initial code implementation of the base second-order differential equation. Conditions analyzed included underdamping with an AC voltage source, as well as underdamping, critical damping, and overdamping, all with a DC voltage source.
+                As stated, RLC Series circuits can be analyzed with respect to their behavior under different damping
+                conditions. A MATLAB simulation of such behaviors was performed using the initial code implementation of
+                the base second-order differential equation. Conditions analyzed included underdamping with an AC
+                voltage source, as well as underdamping, critical damping, and overdamping, all with a DC voltage
+                source.
             </p>
         </section>
 
@@ -96,18 +116,28 @@
                     <div class="lg:w-1/2">
                         <span class="damping-badge damping-under mb-4">Case 1 &bull; Underdamped AC</span>
                         <h3 class="text-2xl font-bold text-white mb-4">AC Voltage Source (Underdamped)</h3>
-                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
+                        <div
+                            class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
                             <div><strong class="text-white">Resistor:</strong> \(R = 2\ \Omega\) (Underdamped)</div>
-                            <div><strong class="text-white">Voltage Source:</strong> \(V(t) = 100 \sin(60t)\text{ V}\)</div>
-                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C = 0.01\text{ F}\)</div>
+                            <div><strong class="text-white">Voltage Source:</strong> \(V(t) = 100 \sin(60t)\text{ V}\)
+                            </div>
+                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C =
+                                0.01\text{ F}\)</div>
                         </div>
                         <p class="text-slate-300 leading-relaxed text-sm">
-                            Due to this low resistance and the continuously changing AC source voltage, the charge and rate of change of charge (current) oscillate heavily. The circuit oscillates for a very long time without settling, which cannot be plotted in full duration due to its large value. The transient response takes a substantial period to decay, leaving the steady-state sinusoidal response.
+                            Due to this low resistance and the continuously changing AC source voltage, the charge and
+                            rate of change of charge (current) oscillate heavily. The circuit oscillates for a very long
+                            time without settling, which cannot be plotted in full duration due to its large value. The
+                            transient response takes a substantial period to decay, leaving the steady-state sinusoidal
+                            response.
                         </p>
                     </div>
-                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
-                        <img src="resources/media/image10.png" alt="Figure b: Underdamped AC Plot" class="rounded border border-white/5 max-w-full h-auto mb-2">
-                        <span class="text-xs text-slate-400 italic">Figure b: Plot of q(t) changing with t for an AC source V = 100sin(60t) V, R = 2 ohms (Underdamped)</span>
+                    <div
+                        class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/image10.png" alt="Figure b: Underdamped AC Plot"
+                            class="rounded border border-white/5 max-w-full h-auto mb-2">
+                        <span class="text-xs text-slate-400 italic">Figure b: Plot of q(t) changing with t for an AC
+                            source V = 100sin(60t) V, R = 2 ohms (Underdamped)</span>
                     </div>
                 </div>
             </section>
@@ -118,18 +148,27 @@
                     <div class="lg:w-1/2">
                         <span class="damping-badge damping-under mb-4">Case 2 &bull; Underdamped DC</span>
                         <h3 class="text-2xl font-bold text-white mb-4">DC Voltage Source (Underdamped)</h3>
-                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
+                        <div
+                            class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
                             <div><strong class="text-white">Resistor:</strong> \(R = 2\ \Omega\) (Underdamped)</div>
-                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)</div>
-                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C = 0.01\text{ F}\)</div>
+                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)
+                            </div>
+                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C =
+                                0.01\text{ F}\)</div>
                         </div>
                         <p class="text-slate-300 leading-relaxed text-sm">
-                            Similar to the AC source, the system exhibits large initial oscillations. However, because the voltage source is constant (DC), the transient term eventually decays to zero, and the system gradually settles to its steady-state charge. The steady-state charge stored on the capacitor is \(q = C \cdot V = 0.01 \cdot 100 = 1\text{ C}\).
+                            Similar to the AC source, the system exhibits large initial oscillations. However, because
+                            the voltage source is constant (DC), the transient term eventually decays to zero, and the
+                            system gradually settles to its steady-state charge. The steady-state charge stored on the
+                            capacitor is \(q = C \cdot V = 0.01 \cdot 100 = 1\text{ C}\).
                         </p>
                     </div>
-                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
-                        <img src="resources/media/image11.png" alt="Figure c: Underdamped DC Plot" class="rounded border border-white/5 max-w-full h-auto mb-2">
-                        <span class="text-xs text-slate-400 italic">Figure c: Plot of q(t) changing with t for a DC source V = 100 V, R = 2 ohms (Underdamped)</span>
+                    <div
+                        class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/image11.png" alt="Figure c: Underdamped DC Plot"
+                            class="rounded border border-white/5 max-w-full h-auto mb-2">
+                        <span class="text-xs text-slate-400 italic">Figure c: Plot of q(t) changing with t for a DC
+                            source V = 100 V, R = 2 ohms (Underdamped)</span>
                     </div>
                 </div>
             </section>
@@ -138,20 +177,30 @@
             <section class="glass-panel rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="lg:w-1/2">
-                        <span class="damping-badge damping-critical mb-4 font-bold text-emerald-400">Case 3 &bull; Critically Damped DC</span>
+                        <span class="damping-badge damping-critical mb-4 font-bold text-emerald-400">Case 3 &bull;
+                            Critically Damped DC</span>
                         <h3 class="text-2xl font-bold text-white mb-4">DC Voltage Source (Critically Damped)</h3>
-                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
-                            <div><strong class="text-white">Resistor:</strong> \(R = 20\ \Omega\) (Critically Damped, \(\alpha = \omega_0\))</div>
-                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)</div>
-                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C = 0.01\text{ F}\)</div>
+                        <div
+                            class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
+                            <div><strong class="text-white">Resistor:</strong> \(R = 20\ \Omega\) (Critically Damped,
+                                \(\alpha = \omega_0\))</div>
+                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)
+                            </div>
+                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C =
+                                0.01\text{ F}\)</div>
                         </div>
                         <p class="text-slate-300 leading-relaxed text-sm">
-                            When the resistance is set to \(20\ \Omega\), the system is critically damped. The circuit reaches its steady state of \(1\text{ C}\) in the shortest possible time without any overshoot or oscillation. This response represents the optimal boundary between oscillation and sluggish decay, making it ideal for systems requiring fast and stable responses.
+                            When the resistance is set to \(20\ \Omega\), the system is critically damped. The circuit
+                            reaches its steady state of \(1\text{ C}\) in the shortest possible time without any
+                            oscillation. This response makes it desired for systems requiring fast and stable responses.
                         </p>
                     </div>
-                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
-                        <img src="resources/media/image12.png" alt="Figure d: Critically Damped DC Plot" class="rounded border border-white/5 max-w-full h-auto mb-2">
-                        <span class="text-xs text-slate-400 italic">Figure d: Plot of q(t) changing with t for a DC source V = 100 V, R = 20 ohms (Critically damped)</span>
+                    <div
+                        class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/image12.png" alt="Figure d: Critically Damped DC Plot"
+                            class="rounded border border-white/5 max-w-full h-auto mb-2">
+                        <span class="text-xs text-slate-400 italic">Figure d: Plot of q(t) changing with t for a DC
+                            source V = 100 V, R = 20 ohms (Critically damped)</span>
                     </div>
                 </div>
             </section>
@@ -160,83 +209,54 @@
             <section class="glass-panel rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
                 <div class="flex flex-col lg:flex-row gap-8">
                     <div class="lg:w-1/2">
-                        <span class="damping-badge damping-over mb-4 font-bold text-red-400">Case 4 &bull; Overdamped DC</span>
+                        <span class="damping-badge damping-over mb-4 font-bold text-red-400">Case 4 &bull; Overdamped
+                            DC</span>
                         <h3 class="text-2xl font-bold text-white mb-4">DC Voltage Source (Overdamped)</h3>
-                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
-                            <div><strong class="text-white">Resistor:</strong> \(R = 100\ \Omega\) (Overdamped, \(\alpha > \omega_0\))</div>
-                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)</div>
-                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C = 0.01\text{ F}\)</div>
+                        <div
+                            class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm space-y-1 text-slate-400">
+                            <div><strong class="text-white">Resistor:</strong> \(R = 100\ \Omega\) (Overdamped, \(\alpha
+                                > \omega_0\))</div>
+                            <div><strong class="text-white">Voltage Source:</strong> \(V = 100\text{ V}\) (Constant DC)
+                            </div>
+                            <div><strong class="text-white">Inductance & Capacitance:</strong> \(L = 1\text{ H}\), \(C =
+                                0.01\text{ F}\)</div>
                         </div>
                         <p class="text-slate-300 leading-relaxed text-sm">
-                            With \(R = 100\ \Omega\), the resistor provides excessive damping. There are no oscillations, but the circuit returns to equilibrium very slowly compared to the critically damped case. Although sluggish, this behavior is useful in surge protection circuits where suppressing rapid changes and preventing ringing is more critical than response speed.
+                            With \(R = 100\ \Omega\), the resistor provides excessive damping. There are no
+                            oscillations, but the circuit returns to equilibrium very slowly compared to the critically
+                            damped case. Although sluggish, this behavior is useful in surge protection circuits where
+                            suppressing rapid changes is more critical than response speed.
                         </p>
                     </div>
-                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
-                        <img src="resources/media/image13.png" alt="Figure e: Overdamped DC Plot" class="rounded border border-white/5 max-w-full h-auto mb-2">
-                        <span class="text-xs text-slate-400 italic">Figure e: Plot of q(t) changing with t for a DC source V = 100 V, R = 100 ohms (Overdamped)</span>
+                    <div
+                        class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/image13.png" alt="Figure e: Overdamped DC Plot"
+                            class="rounded border border-white/5 max-w-full h-auto mb-2">
+                        <span class="text-xs text-slate-400 italic">Figure e: Plot of q(t) changing with t for a DC
+                            source V = 100 V, R = 100 ohms (Overdamped)</span>
                     </div>
                 </div>
             </section>
 
         </div>
 
-        <!-- Section 3: Solver Error Analysis -->
-        <section class="glass-panel rounded-2xl p-8 md:p-12 mt-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
-                3. Comparative Analysis & Numerical Error
-            </h2>
-            
-            <p class="text-slate-300 mb-6 leading-relaxed">
-                In numerical methods, approximating a differential equation requires selecting an appropriate time step \(h\) and solver algorithm. In our analysis, we compared Euler's Method (first-order) against the Runge-Kutta 4th Order (RK4) method and MATLAB's variable-step solver `ode45`.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 text-sm text-slate-300">
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                    <h4 class="text-white font-bold text-base mb-2">Euler's Method (1st Order)</h4>
-                    <p class="mb-4">
-                        Approximates the next state by moving along the tangent line:
-                        \(y_{n+1} = y_n + h \cdot f(t_n, y_n)\).
-                    </p>
-                    <ul class="list-disc pl-5 space-y-1 text-slate-400">
-                        <li>Local truncation error is \(O(h^2)\).</li>
-                        <li>Highly sensitive to step size \(h\).</li>
-                        <li>Prone to mathematical instability (blowing up) when \(h\) exceeds the critical damping frequency.</li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                    <h4 class="text-white font-bold text-base mb-2">Runge-Kutta 4th Order (RK4)</h4>
-                    <p class="mb-4">
-                        Takes a weighted average of four slope estimates across the step interval:
-                        \(y_{n+1} = y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)\).
-                    </p>
-                    <ul class="list-disc pl-5 space-y-1 text-slate-400">
-                        <li>Local truncation error is \(O(h^5)\).</li>
-                        <li>Extremely stable and accurate even for moderately large step sizes.</li>
-                        <li>Accurately matches analytical curves with fraction of the step constraint.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3 class="text-lg font-semibold text-white mb-3">Key Numerical Observations:</h3>
-            <ul class="list-disc pl-5 text-slate-300 space-y-2 text-sm leading-relaxed">
-                <li><strong>Euler Instability</strong>: For a small time step \(h = 0.001\text{ s}\), Euler matches the curves decently. If \(h\) increases to \(0.05\text{ s}\) or \(0.1\text{ s}\), Euler's method accumulated errors exponentially, leading to false unbounded oscillations (instability) in the underdamped case.</li>
-                <li><strong>RK4 Robustness</strong>: RK4 maintained full stability at \(h = 0.05\text{ s}\) and mapped nearly identically to MATLAB's `ode45` variable step solution.</li>
-                <li><strong>Steady State Convergence</strong>: For the DC source cases, all stable numerical methods converge perfectly to the steady state value of \(q = 1.0\text{ C}\) as \(t \to \infty\), showing that the transient terms indeed go to zero.</li>
-            </ul>
-        </section>
-
         <!-- Footer Navigation Links -->
         <div class="flex justify-between items-center mt-12 border-t border-white/10 pt-8">
-            <a href="code.html" class="flex items-center text-slate-400 hover:text-white transition duration-200 text-sm">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <a href="code.html"
+                class="flex items-center text-slate-400 hover:text-white transition duration-200 text-sm">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
                 MATLAB Code
             </a>
-            <a href="team.html" class="flex items-center text-accentcyan hover:text-cyan-400 transition duration-200 text-sm font-semibold">
+            <a href="team.html"
+                class="flex items-center text-accentcyan hover:text-cyan-400 transition duration-200 text-sm font-semibold">
                 Proceed to Our Team
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l7-7m-7 7H3"></path></svg>
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l7-7m-7 7H3">
+                    </path>
+                </svg>
             </a>
         </div>
     </main>
@@ -250,4 +270,5 @@
     </footer>
 
 </body>
+
 </html>
