@@ -11,8 +11,8 @@
             theme: {
                 extend: {
                     colors: {
-                        darkbg: '#060913',
-                        darkcard: 'rgba(17, 24, 39, 0.7)',
+                        darkbg: 'var(--bg-darker)',
+                        darkcard: 'var(--bg-card)',
                         accentcyan: '#06b6d4',
                         accentpurple: '#a855f7',
                     }
@@ -21,6 +21,7 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
     <!-- MathJax for rendering LaTeX equations -->
     <script>
         window.MathJax = {
@@ -30,7 +31,6 @@
             }
         };
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
@@ -67,6 +67,14 @@
                         class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our
                         Team</a>
                 </nav>
+                <button class="theme-toggle-btn hidden md:flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all duration-200" aria-label="Toggle theme">
+                    <svg class="theme-toggle-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg class="theme-toggle-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
                 <div class="md:hidden relative">
                     <button id="mobile-nav-toggle" class="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-slate-200 flex items-center space-x-1.5 focus:outline-none transition-all duration-200 active:scale-95">
                         <span>Model</span>
@@ -345,6 +353,7 @@
                 <div class="bg-slate-950/40 border border-white/10 rounded-xl p-8">
                     <h4 class="text-lg font-bold text-white mb-4">Case 1: General Solution (Symbolic Approach) — Assume
                         Voltage Source is DC</h4>
+                    
                     <div class="text-center my-4">$$Lq'' + Rq' + \frac{1}{C}q = V(t)$$</div>
                     <p class="mb-3">Finding the homogeneous solution — ignoring \(V(t)\):</p>
                     <div class="text-center my-4">$$Lq'' + Rq' + \frac{1}{C}q = 0$$</div>
@@ -353,8 +362,8 @@
                     <p class="mb-3">Let \(q = e^{rt}\) — characteristic equation:</p>
                     <div class="text-center my-4">$$r^2 + \frac{R}{L}r + \frac{1}{LC} = 0$$</div>
                     <p class="mb-3">Using the discriminant \(\Delta = b^2 - 4ac\):</p>
-                    <div class="text-center my-4">$$\Delta = \left(\frac{R}{L}\right)^2 - \left(\frac{4}{LC}\right)$$
-                    </div>
+                    <div class="text-center my-4">$$\Delta = \left(\frac{R}{L}\right)^2 - \left(\frac{4}{LC}\right)$$</div>
+                    
                     <p class="mt-4 mb-2"><strong class="text-white">1) When \(\Delta > 0\)</strong> (real roots,
                         overdamped):</p>
                     <div class="text-center my-3">$$r_1 = \frac{-R/L + \sqrt{\Delta}}{2}, \qquad r_2 = \frac{-R/L -
@@ -362,6 +371,7 @@
                     <div class="text-center my-3">$$q_h(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}$$</div>
                     <p class="mb-2">Since \(V_0\) is constant (DC source):</p>
                     <div class="text-center my-3">$$q(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t} + q_p(t)$$</div>
+                    
                     <p class="mt-5 mb-2"><strong class="text-white">2) When \(\Delta = 0\)</strong> (critically damped —
                         repeated roots):</p>
                     <div class="text-center my-3">$$r = \frac{-R/L}{2} = \frac{-R}{2L}$$</div>
@@ -369,6 +379,14 @@
                     <div class="text-center my-3">$$q_h(t) = C_1 e^{rt} + C_2 t e^{rt}$$</div>
                     <div class="text-center my-3">$$q_h(t) = (C_1 + C_2 t) e^{rt}$$</div>
                     <div class="text-center my-3">$$q(t) = (C_1 + C_2 t) e^{-\frac{R}{2L}t} + q_p(t)$$</div>
+
+                    <p class="mt-5 mb-2"><strong class="text-white">3) When \(\Delta < 0\)</strong> (underdamped, complex roots):</p>
+                    <div class="text-center my-3">$$R^2 - \frac{4L}{C} < 0 \implies R^2 < \frac{4L}{C}$$</div>
+                    <div class="text-center my-3">$$r = \frac{-R \pm \sqrt{-\left(\frac{4L}{C} - R^2\right)}}{2L} = \frac{-R \pm i\sqrt{\frac{4L}{C} - R^2}}{2L}$$</div>
+                    <div class="text-center my-3">$$r_1 = \frac{-R}{2L} + i\frac{\sqrt{\frac{4L}{C} - R^2}}{2L}, \qquad r_2 = \frac{-R}{2L} - i\frac{\sqrt{\frac{4L}{C} - R^2}}{2L}$$</div>
+                    <div class="text-center my-3">$$q_h(t) = e^{\alpha t} (C_1 \cos \beta t + C_2 \sin \beta t)$$</div>
+                    <p class="mb-2 text-center">where \(\alpha = \frac{-R}{2L}\) and \(\beta = \frac{\sqrt{\frac{4L}{C} - R^2}}{2L}\)</p>
+                    <div class="text-center my-3">$$q(t) = e^{\alpha t} (C_1 \cos \beta t + C_2 \sin \beta t) + q_p(t)$$</div>
                 </div>
 
                 <!-- Step 2: Worked Example -->

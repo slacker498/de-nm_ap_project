@@ -11,8 +11,8 @@
             theme: {
                 extend: {
                     colors: {
-                        darkbg: '#060913',
-                        darkcard: 'rgba(17, 24, 39, 0.7)',
+                        darkbg: 'var(--bg-darker)',
+                        darkcard: 'var(--bg-card)',
                         accentcyan: '#06b6d4',
                         accentpurple: '#a855f7',
                         accentgreen: '#10b981',
@@ -22,6 +22,7 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
 </head>
 
 <body class="bg-darkbg bg-dots">
@@ -56,8 +57,24 @@
                     <a href="team.html"
                         class="nav-link text-sm font-medium text-white transition duration-200 active">Our Team</a>
                 </nav>
-                <div class="md:hidden">
+                <button class="theme-toggle-btn hidden md:flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all duration-200" aria-label="Toggle theme">
+                    <svg class="theme-toggle-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg class="theme-toggle-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <div class="md:hidden flex items-center gap-2">
                     <span class="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded text-slate-300">Team</span>
+                    <button class="theme-toggle-btn flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all duration-200" aria-label="Toggle theme">
+                        <svg class="theme-toggle-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="theme-toggle-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -87,7 +104,7 @@
                     class="w-32 h-32 rounded-full bg-gradient-to-tr from-cyan-500 to-emerald-400 p-1 mb-6 relative shadow-lg shadow-cyan-500/20">
                     <div
                         class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-                        <img src="team/1747520774373.jpeg" alt="">
+                        <img src="team/afun.jpeg" alt="">
                     </div>
                     <div class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center"
                         title="Online"></div>

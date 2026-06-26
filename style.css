@@ -10,14 +10,214 @@
     --accent-yellow: #f59e0b;
     --accent-green: #10b981;
     --accent-red: #ef4444;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+}
+
+html.light {
+    --bg-darker: #f8fafc;
+    --bg-dark: #f1f5f9;
+    --bg-card: rgba(255, 255, 255, 0.75);
+    --border-color: rgba(15, 23, 42, 0.08);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg-darker);
-    color: #e2e8f0;
+    color: var(--text-primary);
     overflow-x: hidden;
     scroll-behavior: smooth;
+}
+
+body, header, footer, .glass-panel, a, button, .scrollmation-content, section {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme Toggle Button Hide/Show Rules */
+/* Make SVG children non-interactive so clicks always register on the button */
+.theme-toggle-btn svg,
+.theme-toggle-btn path {
+    pointer-events: none;
+}
+/* Dark mode (default): show sun icon (to switch TO light), hide moon */
+.theme-toggle-btn .theme-toggle-sun {
+    display: block !important;
+}
+.theme-toggle-btn .theme-toggle-moon {
+    display: none !important;
+}
+/* Light mode: show moon icon (to switch TO dark), hide sun */
+html.light .theme-toggle-btn .theme-toggle-sun {
+    display: none !important;
+}
+html.light .theme-toggle-btn .theme-toggle-moon {
+    display: block !important;
+}
+
+/* Light mode overrides for Tailwind utility classes */
+/* Single authoritative block — no duplicates */
+html.light body .text-white,
+html.light .text-white,
+html.light body .text-slate-100,
+html.light .text-slate-100 { color: #0f172a !important; }
+html.light body .text-slate-200,
+html.light .text-slate-200 { color: #1e293b !important; }
+html.light body .text-slate-300,
+html.light .text-slate-300 { color: #334155 !important; }
+html.light body .text-slate-400,
+html.light .text-slate-400 { color: #475569 !important; }
+html.light body .text-slate-500,
+html.light .text-slate-500 { color: #64748b !important; }
+html.light body .text-slate-600,
+html.light .text-slate-600 { color: #475569 !important; }
+html.light body .text-slate-700,
+html.light .text-slate-700 { color: #334155 !important; }
+html.light body .text-slate-800,
+html.light .text-slate-800 { color: #1e293b !important; }
+html.light body .text-slate-900,
+html.light .text-slate-900 { color: #0f172a !important; }
+
+html.light .hover\:text-white:hover,
+html.light .hover\:text-slate-100:hover,
+html.light .hover\:text-slate-200:hover,
+html.light .hover\:text-slate-300:hover,
+html.light .hover\:text-slate-400:hover,
+html.light .hover\:text-slate-500:hover,
+html.light .hover\:text-slate-600:hover,
+html.light .hover\:text-slate-700:hover,
+html.light .hover\:text-slate-800:hover,
+html.light .hover\:text-slate-900:hover {
+    color: #0f172a !important;
+}
+html.light .hover\:text-cyan-400:hover,
+html.light .hover\:text-cyan-500:hover { color: #0891b2 !important; }
+html.light .hover\:text-emerald-400:hover,
+html.light .hover\:text-emerald-500:hover { color: #059669 !important; }
+html.light .hover\:text-purple-400:hover,
+html.light .hover\:text-purple-500:hover { color: #9333ea !important; }
+html.light .hover\:text-red-400:hover,
+html.light .hover\:text-red-500:hover { color: #dc2626 !important; }
+
+/* Force backgrounds in light mode */
+html.light body.bg-darkbg,
+html.light .bg-darkbg {
+    background-color: var(--bg-darker) !important;
+}
+html.light .bg-darkbg {
+    background-color: var(--bg-darker) !important;
+}
+
+/* Borders in Light Mode */
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/20,
+html.light .border-white\/30 {
+    border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Background Opacities in Light Mode */
+html.light .bg-white\/5 {
+    background-color: rgba(15, 23, 42, 0.04) !important;
+}
+html.light .bg-white\/10 {
+    background-color: rgba(15, 23, 42, 0.08) !important;
+}
+html.light .bg-white\/20 {
+    background-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Hardcoded Dark Background Overrides */
+html.light .bg-slate-950,
+html.light .bg-slate-950\/20,
+html.light .bg-slate-950\/30,
+html.light .bg-slate-950\/40,
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/95,
+html.light .bg-slate-900,
+html.light .bg-slate-900\/60 {
+    background-color: rgba(241, 245, 249, 0.85) !important;
+}
+
+html.light .bg-slate-900\/40,
+html.light .bg-slate-900\/20 {
+    background-color: rgba(241, 245, 249, 0.6) !important;
+}
+
+/* Grid & Dots backgrounds in Light Mode */
+html.light .bg-grid {
+    background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+html.light .bg-dots {
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+/* Accent color backgrounds in Light Mode - keep subtle */
+html.light .bg-emerald-500\/10,
+html.light .bg-emerald-500\/20,
+html.light .bg-cyan-500\/10,
+html.light .bg-cyan-500\/20,
+html.light .bg-purple-500\/10,
+html.light .bg-purple-500\/20,
+html.light .bg-purple-500\/30,
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/20,
+html.light .bg-red-500\/10 {
+    background-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Accent color borders in Light Mode */
+html.light .border-emerald-500\/20,
+html.light .border-emerald-500\/30,
+html.light .border-cyan-500\/20,
+html.light .border-cyan-500\/30,
+html.light .border-purple-500\/20,
+html.light .border-purple-500\/30,
+html.light .border-amber-500\/20 {
+    border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
+/* More slate backgrounds */
+html.light .bg-slate-800,
+html.light .bg-slate-800\/50,
+html.light .bg-slate-700,
+html.light .bg-slate-700\/50,
+html.light .bg-slate-600 {
+    background-color: rgba(226, 232, 240, 0.9) !important;
+}
+
+/* Accent text colors - keep them visible in light mode */
+html.light .text-accentcyan { color: #0891b2 !important; }
+html.light .text-accentpurple { color: #9333ea !important; }
+html.light .text-accentgreen { color: #059669 !important; }
+html.light .text-accentred { color: #dc2626 !important; }
+html.light .text-emerald-400 { color: #059669 !important; }
+html.light .text-emerald-500 { color: #059669 !important; }
+html.light .text-cyan-400 { color: #0891b2 !important; }
+html.light .text-red-400 { color: #dc2626 !important; }
+html.light .text-purple-400 { color: #9333ea !important; }
+html.light .text-amber-400 { color: #d97706 !important; }
+html.light .text-indigo-400 { color: #6366f1 !important; }
+
+/* Mobile nav menu overrides */
+html.light #mobile-nav-menu {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Table overrides in Light Mode */
+html.light tr.bg-white\/5 {
+    background-color: rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Team section inner backgrounds */
+html.light .team-card-inner,
+html.light .bg-slate-900 {
+    background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Glassmorphism Styles */
@@ -34,6 +234,12 @@ body {
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
     transform: translateY(-2px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.light .glass-panel-hover:hover {
+    background: rgba(255, 255, 255, 0.92);
+    border-color: rgba(15, 23, 42, 0.15);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
 /* Scrollbar Styling */
@@ -53,6 +259,14 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+    background: rgba(15, 23, 42, 0.15);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+    background: rgba(15, 23, 42, 0.28);
 }
 
 /* Glow Effects */
@@ -187,3 +401,25 @@ pre, code {
 .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
 }
+
+/* Keep the simulation background dark even when in light mode */
+#canvas-container {
+    background-color: #020617 !important; 
+}
+
+/* Ensure text contrast in light mode */
+html.light #overlay-state-title {
+    color: #0f172a; /* Dark text for light mode */
+}
+
+html.light #overlay-state-desc {
+    color: #334155; /* Slightly muted dark text */
+}
+
+/* Ensure glass panels look good in light mode */
+html.light .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Sun/Moon icon visibility is controlled by the scoped rules above (html:not(.light) / html.light) */
