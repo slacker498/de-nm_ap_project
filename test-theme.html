@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <style>
+        body {
+            padding: 40px;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .status {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+        .test-button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .test-button:hover {
+            background: var(--accent-cyan);
+            color: #000;
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-100">
+    <div class="test-container">
+        <h1>Theme Toggle Test</h1>
+        
+        <div class="status">
+            <h2>Current Status</h2>
+            <p id="theme-status">Checking theme...</p>
+            <p id="storage-status">Checking storage...</p>
+        </div>
+        
+        <div class="status">
+            <h2>Test Controls</h2>
+            <button class="test-button" onclick="testToggle()">Toggle Theme via JavaScript</button>
+            <button class="test-button" onclick="testLocalStorage()">Check LocalStorage</button>
+            <button class="test-button" onclick="testReset()">Reset Theme</button>
+            <button class="test-button" onclick="testSystemPref()">Check System Preference</button>
+        </div>
+        
+        <div class="status">
+            <h2>Theme Button (Click this)</h2>
+            <button class="theme-toggle-btn" style="display: inline-flex; width: auto; padding: 8px 12px;">
+                <svg class="theme-toggle-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <svg class="theme-toggle-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+                <span>Toggle Theme</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function updateStatus() {
+            const html = document.documentElement;
+            const isLight = html.classList.contains('light');
+            const stored = localStorage.getItem('theme');
+            
+            document.getElementById('theme-status').textContent = 
+                `Current theme: ${isLight ? 'LIGHT' : 'DARK'} | html.light class: ${isLight ? '✓' : '✗'}`;
+            
+            document.getElementById('storage-status').textContent = 
+                `localStorage 'theme': ${stored || 'not set'} | Synced: ${isLight === (stored === 'light') ? '✓' : '✗'}`;
+        }
+        
+        function testToggle() {
+            const html = document.documentElement;
+            html.classList.toggle('light');
+            updateStatus();
+        }
+        
+        function testLocalStorage() {
+            const stored = localStorage.getItem('theme');
+            console.log('localStorage theme:', stored);
+            alert('See console. Stored theme: ' + (stored || 'not set'));
+        }
+        
+        function testReset() {
+            localStorage.removeItem('theme');
+            document.documentElement.classList.remove('light');
+            updateStatus();
+            alert('Theme reset to default (dark)');
+        }
+        
+        function testSystemPref() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            alert(`System preference - Dark: ${isDark}, Light: ${isLight}`);
+        }
+        
+        // Update status when page loads
+        window.addEventListener('load', updateStatus);
+        updateStatus();
+        
+        // Listen for any changes
+        setInterval(updateStatus, 500);
+    </script>
+</body>
+</html>
