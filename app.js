@@ -11,6 +11,9 @@ let crtCanvas, crtContext, crtTexture;
 let pointLightGlow;
 let gaugeNeedle;
 
+// --- Visualization preferences ---
+const DEFAULT_VIEW = '2d'; // '2d' or '3d'
+
 // Animation / Scroll Targets
 let currentScrollFraction = 0;
 let targetCameraPos = null;
@@ -47,6 +50,15 @@ function init() {
 
     const titleOverlay = document.getElementById('overlay-state-title');
     const descOverlay = document.getElementById('overlay-state-desc');
+
+    if (DEFAULT_VIEW === '2d') {
+        if (titleOverlay && descOverlay) {
+            titleOverlay.innerText = stateTitles[dampingMode] + " (2D)";
+            descOverlay.innerText = stateDescs[dampingMode];
+        }
+        init2DFallback(container);
+        return;
+    }
 
     try {
         // Safe check for THREE library presence
@@ -131,7 +143,7 @@ function init() {
         // 7. Start Animation Loop
         animate();
     } catch (error) {
-        console.warn("Three.js/WebGL Initialization failed. Activating 2D Dashboard Fallback...", error);
+        console.warn("Three.js/WebGL Initialization failed or 2D default view selected. Activating 2D Dashboard Fallback...", error);
         init2DFallback(container);
     }
 }
