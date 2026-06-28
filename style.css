@@ -201,6 +201,12 @@ html.light .text-red-400 { color: #dc2626 !important; }
 html.light .text-purple-400 { color: #9333ea !important; }
 html.light .text-amber-400 { color: #d97706 !important; }
 html.light .text-indigo-400 { color: #6366f1 !important; }
+html.light .text-white\/80,
+html.light .text-white\/70,
+html.light .text-white\/60,
+html.light .text-white\/50 {
+    color: #334155 !important;
+}
 
 /* Mobile nav menu overrides */
 html.light #mobile-nav-menu {
@@ -226,6 +232,25 @@ html.light .bg-slate-900 {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-color);
+}
+
+.main-paper-reference {
+    background-color: rgba(124, 58, 237, 0.18);
+    border-color: rgba(124, 58, 237, 0.35);
+}
+
+.main-paper-reference .main-paper-italic {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+html.light .main-paper-reference {
+    background-color: rgba(124, 58, 237, 0.24) !important;
+    border-color: rgba(124, 58, 237, 0.55) !important;
+    box-shadow: 0 20px 40px -20px rgba(124, 58, 237, 0.3) !important;
+}
+
+html.light .main-paper-reference .main-paper-italic {
+    color: #0f172a !important;
 }
 
 .glass-panel-hover:hover {
