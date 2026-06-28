@@ -256,6 +256,63 @@
 
         </div>
 
+        <section class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden mt-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 border-b border-white/10 pb-4">
+                2. Parameter Sensitivity Analysis
+            </h2>
+            <p class="text-slate-300 mb-6 leading-relaxed">
+                Aside from damping effects, which can be realised by varying the system's resistance, varying other parameters, such as inductance and capacitance, also has effects.
+            </p>
+
+            <div class="space-y-12">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-1/2">
+                        <h3 class="text-2xl font-bold text-white mb-4">Effects of Varying Capacitance</h3>
+                        <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                            Varying capacitance values in a critically damped example system, \(\frac{d^{2}q}{dt^{2}}+20\frac{dq}{dt}+\frac{q}{C}=100\), for a 10-second time window reveals significant changes. It can be seen that increasing capacitance increases the time required for a system to reach steady state.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                            This can be confirmed from the natural resonant frequency:
+                        </p>
+                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm text-center text-slate-400">
+                            $$ \omega_0 = \frac{1}{\sqrt{LC}} $$
+                        </div>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            Such that increasing capacitance slows the rate at which energy swings back and forth, causing the system to take longer to reach a steady state.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/param_sens_cap.png" alt="Figure: Parameter Sensitivity Analysis of Capacitance" class="rounded border border-white/5 max-w-full h-auto mb-2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjMWUyOTNiIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2NDc0OGIiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5bQ2FwYWNpdGFuY2UgUGxvdCBmcm9tIEFwcGVuZGl4IFZJSU08L3RleHQ+PC9zdmc+'">
+                        <span class="text-xs text-slate-400 italic">Figure f: Parameter Sensitivity Analysis of Capacitance in a Critically Damped RLC Series system.</span>
+                    </div>
+                </div>
+
+                <hr class="border-white/10">
+
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-1/2">
+                        <h3 class="text-2xl font-bold text-white mb-4">Effects of Varying Inductance</h3>
+                        <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                            Similarly, variations in inductance values and their effects on a critically damped system, \(L\frac{d^{2}q}{dt^{2}}+20\frac{dq}{dt}+\frac{q}{0.01}=100\) for the same time window show that as inductance increases, the time required to reach steady state changes. More notably, a higher inductance makes the system behave more underdamped, oscillating more times before reaching steady state.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                            This can also be confirmed theoretically from the damping ratio:
+                        </p>
+                        <div class="my-4 bg-slate-950/20 p-4 rounded border border-white/5 text-sm text-center overflow-x-auto text-slate-400">
+                            $$ \zeta = \frac{R}{R_{c}} = \frac{R}{\sqrt{4L/C}} = \frac{R}{2}\sqrt{\frac{C}{L}} $$
+                        </div>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            A damping ratio less than 1 indicates an underdamped system, equal to 1 indicates a critically damped system, and > 1 indicates an overdamped system. Hence, as L increases, the damping ratio starts to approach zero, giving it an underdamped behaviour and confirming the plotted results.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 flex flex-col items-center bg-slate-950/30 p-4 rounded-xl border border-white/10">
+                        <img src="resources/media/param_sens_ind.png" alt="Figure: Parameter Sensitivity Analysis of Inductance" class="rounded border border-white/5 max-w-full h-auto mb-2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjMWUyOTNiIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZpbGw9IiM2NDc0OGIiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5bSW5kdWN0YW5jZSBQbG90IGZyb20gQXBwZW5kaXggVklJbTwvdGV4dD48L3N2Zz4='">
+                        <span class="text-xs text-slate-400 italic">Figure g: Parameter Sensitivity Analysis of Inductance in a Critically Damped RLC Series system.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer Navigation Links -->
         <div class="flex justify-between items-center mt-12 border-t border-white/10 pt-8">
             <a href="code.html"
