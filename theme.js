@@ -86,3 +86,55 @@
         });
     }
 })();
+
+// Dropdown hover stabilization for nav menus
+(function () {
+    // Small delay to avoid flicker when moving between button and menu
+    const HIDE_DELAY = 150;
+
+    function showMenu(menu) {
+        menu.classList.remove('hidden');
+        menu.classList.add('block');
+    }
+
+    function hideMenu(menu) {
+        menu.classList.remove('block');
+        menu.classList.add('hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdownWrappers = document.querySelectorAll('.relative.group');
+        dropdownWrappers.forEach(wrapper => {
+            const button = wrapper.querySelector('button');
+            const menu = wrapper.querySelector('div[role="menu"], div');
+            if (!button || !menu) return;
+
+            // Ensure menu starts hidden if it has 'hidden' class handled in markup
+            let hideTimeout = null;
+
+            wrapper.addEventListener('mouseenter', () => {
+                if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+                showMenu(menu);
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => hideMenu(menu), HIDE_DELAY);
+            });
+
+            // Keep open when focusing with keyboard
+            button.addEventListener('focus', () => showMenu(menu));
+            button.addEventListener('blur', () => {
+                hideTimeout = setTimeout(() => hideMenu(menu), HIDE_DELAY);
+            });
+
+            // Also allow hovering the menu itself to keep it open
+            menu.addEventListener('mouseenter', () => {
+                if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+                showMenu(menu);
+            });
+            menu.addEventListener('mouseleave', () => {
+                hideTimeout = setTimeout(() => hideMenu(menu), HIDE_DELAY);
+            });
+        });
+    });
+})();
