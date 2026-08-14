@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Contribution - RLC Circuit Dynamics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: 'var(--bg-darker)',
+                        darkcard: 'var(--bg-card)',
+                        accentcyan: '#06b6d4',
+                        accentpurple: '#a855f7',
+                        accentgreen: '#10b981',
+                        accentred: '#ef4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body class="bg-darkbg bg-dots">
+
+    <header class="glass-panel sticky top-0 z-50 border-b border-white/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Home</a>
+                    <a href="model.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Model & Derivation</a>
+                    <a href="code.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">MATLAB Code</a>
+                    <div class="relative group">
+                        <button class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200 flex items-center gap-2">
+                            Results
+                            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 bg-slate-950/95 border border-white/10 rounded-xl shadow-xl backdrop-blur-md py-2 hidden group-hover:block z-50">
+                            <a href="results.html" class="block px-4 py-2 text-xs font-semibold text-accentcyan hover:bg-white/5">Simulation Results & Plot Analysis</a>
+                            <a href="figure-replication.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Figure Replication</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="nav-link text-sm font-medium text-white transition duration-200 flex items-center gap-2">
+                            Our Contribution
+                            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-72 bg-slate-950/95 border border-white/10 rounded-xl shadow-xl backdrop-blur-md py-2 hidden group-hover:block z-50">
+                            <a href="modifications.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Modifications</a>
+                            <a href="our-results.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Our Results</a>
+                            <a href="further-research.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Limitations & Further Research</a>
+                            <a href="results-code.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">MATLAB Code</a>
+                        </div>
+                    </div>
+                    <a href="team.html" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition duration-200">Our Team</a>
+                </nav>
+                <button class="theme-toggle-btn hidden md:flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all duration-200" aria-label="Toggle theme">
+                    <svg class="theme-toggle-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg class="theme-toggle-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <div class="md:hidden flex items-center gap-2">
+                    <div class="relative">
+                        <button id="mobile-nav-toggle" class="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-slate-200 flex items-center space-x-1.5 focus:outline-none transition-all duration-200 active:scale-95">
+                            <span>Contribution</span>
+                            <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="mobile-nav-menu" class="hidden absolute right-0 mt-2 w-64 bg-slate-950/95 border border-white/10 rounded-xl shadow-xl backdrop-blur-md py-2 z-50">
+                            <a href="index.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Home</a>
+                            <a href="model.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Model & Derivation</a>
+                            <a href="code.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">MATLAB Code</a>
+                            <a href="our-contribution.html" class="block px-4 py-2 text-xs font-semibold text-accentcyan hover:bg-white/5">Our Contribution</a>
+                            <a href="results.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Simulation Results & Plot Analysis</a>
+                            <a href="figure-replication.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Figure Replication</a>
+                            <a href="team.html" class="block px-4 py-2 text-xs text-slate-300 hover:bg-white/5">Our Team</a>
+                        </div>
+                        <script>
+                            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+                            const mobileNavMenu = document.getElementById('mobile-nav-menu');
+                            if (mobileNavToggle && mobileNavMenu) {
+                                mobileNavToggle.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    mobileNavMenu.classList.toggle('hidden');
+                                });
+                                document.addEventListener('click', function() {
+                                    mobileNavMenu.classList.add('hidden');
+                                });
+                                mobileNavMenu.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                });
+                            }
+                        </script>
+                    </div>
+                    <button class="theme-toggle-btn flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all duration-200" aria-label="Toggle theme">
+                        <svg class="theme-toggle-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="theme-toggle-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-accentcyan text-xs font-semibold mb-4 tracking-wider uppercase">
+                Modifications & Alternative Design
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+                Our Contribution
+            </h1>
+            <p class="text-lg text-slate-400 max-w-3xl mx-auto">
+                We revised the original passive RLC circuit model by considering a practical low-frequency active alternative with comparable filtering behaviour while addressing the limitations of large inductors and parasitic effects.
+            </p>
+        </div>
+
+        <section id="modifications" class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">1. Modifications</h2>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                With the continuous development of devices to be more efficient while reducing their bulky nature, we decided to replace the RLC circuit with a band-pass active filter. This was motivated by the bulky nature of the inductor, parasitic noise introduced by larger inductances, and the need for functionality across a wider frequency range.
+            </p>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                Instead of relying on the traditional KVL-based comparison, we compared the second-order transfer functions of the standard RLC series circuit and the active filter topology. We also revised the model diagram from a passive RLC configuration to a band-pass active filter using a Sallen-Key topology.
+            </p>
+            <div class="bg-slate-950/40 border border-white/10 rounded-xl p-5 text-slate-300">
+                <p class="font-semibold text-white mb-2">Key design idea</p>
+                <p>At low frequencies, an inductor becomes physically large and economically difficult to realize. A band-pass active filter provides an LRC-like response while using op-amp circuits and passive components that are more practical for compact low-frequency systems.</p>
+            </div>
+        </section>
+
+        <section id="theory" class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">2. Theory</h2>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                A filter is a device that passes electric signals at certain frequencies while preventing the passage of others. In the lower frequency range, active filters become important because they can reproduce LRC-like performance without physically large inductors.
+            </p>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                Active filters use an operational amplifier in combination with resistors and capacitors to provide band-pass or other filtering behaviour at low frequencies. In Laplace analysis, transfer functions are used instead of the usual time-domain response because the transfer function approach yields a cleaner comparison of the filter behavior across systems.
+            </p>
+            <div class="my-5 bg-slate-950/30 border border-white/10 rounded-xl p-5 text-center overflow-x-auto">
+                <div class="text-slate-400 text-sm mb-2">Standard transfer-function comparison</div>
+                <div class="text-xl text-cyan-300">$$\frac{V_{out}}{V_{in}} = H(s)$$</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed">
+                The central idea is that, despite different physical implementations, two circuits can be compared by whether their second-order transfer functions and step responses behave similarly under the same damping conditions.
+            </p>
+        </section>
+
+        <section id="proofs" class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">3. Key Handwritten Proof Steps</h2>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                The most important analytical step in the handwritten derivation is the reduction of the physical circuit into a second-order differential equation for the charge, observed as follows:
+            </p>
+            <div class="bg-slate-950/35 border border-white/10 rounded-xl p-5 text-center overflow-x-auto mb-5">
+                <div class="text-xl text-cyan-300">$$Lq'' + Rq' + \frac{q}{C} = V(t)$$</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                The complementary (homogeneous) part of the solution follows from the characteristic equation:
+            </p>
+            <div class="bg-slate-950/35 border border-white/10 rounded-xl p-5 text-center overflow-x-auto mb-5">
+                <div class="text-xl text-cyan-300">$$Lr^2 + Rr + \frac{1}{C} = 0$$</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                The discriminant determines the damping behaviour:
+            </p>
+            <div class="bg-slate-950/35 border border-white/10 rounded-xl p-5 text-center overflow-x-auto mb-5">
+                <div class="text-xl text-cyan-300">$$\Delta = R^2 - \frac{4L}{C}$$</div>
+            </div>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                Depending on the sign of the discriminant, the solution takes one of the standard forms:
+            </p>
+            <ul class="list-disc pl-6 text-slate-300 space-y-2">
+                <li><strong class="text-white">Underdamped:</strong> \(\Delta < 0\), giving oscillatory behaviour with exponential decay.</li>
+                <li><strong class="text-white">Critically damped:</strong> \(\Delta = 0\), giving the fastest non-oscillatory return to equilibrium.</li>
+                <li><strong class="text-white">Overdamped:</strong> \(\Delta > 0\), giving a slower, monotonic return without oscillation.</li>
+            </ul>
+            <div class="mt-6 bg-slate-950/35 border border-white/10 rounded-xl p-5 overflow-x-auto">
+                <div class="text-slate-400 text-sm mb-2">General solution structure</div>
+                <div class="text-xl text-cyan-300">$$q(t) = e^{-\frac{R}{2L}t}(C_1\cos(\beta t) + C_2\sin(\beta t)) + q_p(t)$$</div>
+                <div class="text-sm text-slate-400 mt-2">where $$\beta = \frac{\sqrt{|4L/C - R^2|}}{2L}$$</div>
+            </div>
+        </section>
+
+        <section id="results" class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">4. Results</h2>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                The graphs compare the step-response of the standard RLC series circuit and the Sallen-Key topology across all three damping conditions. The most important observation is that although the circuits are physically different, the step responses are nearly identical when configured to match the same general case.
+            </p>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                This confirms our contribution: a practical low-frequency active design can emulate the core dynamic behaviour of the original passive circuit without the limitations associated with large inductors and their parasitic effects.
+            </p>
+            <div class="bg-slate-950/40 border border-white/10 rounded-xl p-5 text-slate-300">
+                <p class="font-semibold text-white mb-2">Conclusion from the comparison</p>
+                <p>The active low-pass/band-pass filter substitutes the passive inductor-based response for a more practical implementation while preserving the expected damping behaviour in a second-order system.</p>
+            </div>
+        </section>
+
+        <section id="limitations" class="glass-panel rounded-2xl p-8 md:p-12 mb-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">5. Limitations and Further Research</h2>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                One crucial limitation discovered was that a direct replacement for an RLC circuit is not always possible. One must consider the intended use case, whether for filtering or surge suppression, as well as the frequency range the circuit is expected to operate within. These factors are not always captured directly by KVL-based or second-order transfer-function models.
+            </p>
+            <p class="text-slate-300 leading-relaxed mb-5">
+                In future work, we plan to investigate Antoniou gyrators and other active replacement strategies for inductors without changing the resistor and capacitor values in a series RLC circuit. This would allow direct comparison of the charge response rather than only the voltage response used in the modification analysis.
+            </p>
+            <p class="text-slate-300 leading-relaxed">
+                Further comparisons will also be made for other second-order Sallen-Key topology pass circuits, to determine which configuration offers the most generalised solution for standard RLC circuit behaviour.
+            </p>
+        </section>
+
+        <section id="references" class="glass-panel rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-5 border-b border-white/10 pb-4">6. References</h2>
+            <ol class="list-decimal pl-6 text-slate-300 space-y-3">
+                <li class="leading-relaxed">B. Carter and R. Mancini, “Op Amps for Everyone: Fifth Edition,” Op Amps for Everyone: Fifth Edition, pp. 1–458, Jul. 2017.</li>
+                <li class="leading-relaxed">J. W. Nilsson and S. Riedel, Electric Circuits, 9th ed. USA: Prentice Hall Press, 2010.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/5 py-12 mt-20 bg-slate-950/40 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm">
+            <p>© 2026 Applied Programming Project - Ashesi University College</p>
+            <p class="mt-2 text-xs">Developed by Cal Afun, Darius Dewortor, Jachin Kpogli, Nii Amu, Deo Abban</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
