@@ -32,6 +32,13 @@ function charge_plotter(alpha, wo)
     grid on
     ylim([min(x_euler)-1 max(x_euler)+1])
 
+    figure
+    plot(q_euler, x_euler, 'g', 'LineWidth', 1.5)
+    xlabel('Charge, q(t) (C)')
+    ylabel('Current, i(t) = dq/dt (A)')
+    title('Phase Portrait: x(t) against q(t)')
+    grid on
+
 end
 
 %% Underdamping
