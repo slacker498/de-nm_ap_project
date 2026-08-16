@@ -21,7 +21,6 @@ This project is a static website for exploring RLC circuit behavior, including t
 
 - index.html: homepage
 - model.html: model and derivation
-- code.html: MATLAB code
 - results.html: results and analysis
 - team.html: team information
 
